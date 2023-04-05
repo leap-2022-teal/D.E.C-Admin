@@ -1,5 +1,7 @@
 import React from "react";
 
 export default function Home() {
-  return <div>Hello NextJS ADMIN DEC Team project</div>;
+  return (
+    <div style={{ color: "green" }}>Hello NextJS ADMIN DEC Team project</div>
+  );
 }
