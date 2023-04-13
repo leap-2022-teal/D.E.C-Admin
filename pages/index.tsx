@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-export default function Home(props: any) {
-  const [category, setCategory] = useState(props.category);
+export default function Home() {
+  const [category, setCategory] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8000/categories`)
