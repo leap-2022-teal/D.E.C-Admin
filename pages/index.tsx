@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Home(props: any) {
+  const [category, setCategory] = useState(props.category);
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/categories`)
+      .then((res) => res.json())
+      .then((data) => setCategory(data));
+  }, []);
+  console.log(category);
   return (
-    <>
-      <div style={{ color: "green" }}>
-        Hello NextJS ADMIN DEC Team project is hi
-      </div>
-    </>
+    <div className="max-w-4xl mx-auto border-2">
+      {category?.map((categories: any) => (
+        <h2 key={categories._id}>{categories.name}</h2>
+      ))}
+    </div>
   );
 }
