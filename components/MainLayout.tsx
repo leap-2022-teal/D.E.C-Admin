@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import CategoryIcon from "@mui/icons-material/Category";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import ShareIcon from "@mui/icons-material/Share";
 
 export default function MainLayout({ children }: any) {
   return (
@@ -101,9 +103,7 @@ export default function MainLayout({ children }: any) {
               >
                 <CategoryIcon className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
 
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Categories
-                </span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Ангилал</span>
               </Link>
             </li>
             <li>
@@ -124,7 +124,10 @@ export default function MainLayout({ children }: any) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap"> Products</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  {" "}
+                  Бараа Бүтээгдэхүүн
+                </span>
               </Link>
             </li>
             <li>
@@ -145,7 +148,9 @@ export default function MainLayout({ children }: any) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Users</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">
+                  Хэрэглэгчид
+                </span>
               </Link>
             </li>
             <li>
@@ -166,7 +171,7 @@ export default function MainLayout({ children }: any) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap"> Orders</span>
+                <span className="flex-1 ml-3 whitespace-nowrap"> Захиалга</span>
               </Link>
             </li>
 
@@ -216,7 +221,62 @@ export default function MainLayout({ children }: any) {
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64">{children}</div>
+      <div className="p-4 sm:ml-64 md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64">
+        <div className="flex justify-between ">
+          <form>
+            <label
+              htmlFor="default-search"
+              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            >
+              Search
+            </label>
+
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="search"
+                id="default-search"
+                className="block  p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[500px]"
+                placeholder="Search Mockups, Logos..."
+                required
+              />
+              <button
+                type="submit"
+                className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+          <div className="w-[40%] flex justify-between">
+            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+              <AddCircleOutlineIcon className="mr-2" />
+              Ангилал нэмэх
+            </button>
+            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+              <ShareIcon className="mr-2" />
+              Дэд Ангилал нэмэх
+            </button>
+          </div>
+        </div>
+        <div>{children}</div>
+      </div>
     </>
   );
 }
