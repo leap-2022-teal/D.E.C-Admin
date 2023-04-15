@@ -1,7 +1,9 @@
 import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Modal from "@/components/categoryModal";
+import SubModal from "@/components/categorySubModal";
+import CategoryEditModal from "@/components/categoryEditModal";
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -14,22 +16,28 @@ export default function Categories() {
 
   return (
     <MainLayout>
-      {categories?.map((category: any) => (
-        <div
-          key={category._id}
-          className=" border-slate-500 rounded-[10px] border-solid border-2  flex justify-between p-4 my-8 w-[50%]"
-        >
-          {category.name}
-          <div className="">
-            <button className="bg-amber-300 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
-              <EditIcon />
-            </button>
-            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4">
-              <DeleteIcon />
-            </button>
-          </div>
+      <div className=" flex justify-between">
+        <div className="w-[50%]">
+          {categories?.map((category: any) => (
+            <div
+              key={category._id}
+              className="  rounded-[5px] bg-gray-200 flex justify-between p-4 my-8 w-[100%]"
+            >
+              {category.name}
+              <div className="">
+                <CategoryEditModal />
+                <button>
+                  <DeleteIcon className="text-red-500 ml-4" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+        <div className=" flex justify-around w-[40%]">
+          <Modal />
+          <SubModal />
+        </div>
+      </div>
     </MainLayout>
   );
 }

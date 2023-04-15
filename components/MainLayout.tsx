@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import CategoryIcon from "@mui/icons-material/Category";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import ShareIcon from "@mui/icons-material/Share";
 
 export default function MainLayout({ children }: any) {
   return (
@@ -221,6 +219,8 @@ export default function MainLayout({ children }: any) {
         </div>
       </aside>
 
+      {/* /////////////////////////////////////// */}
+
       <div className="p-4 sm:ml-64 md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64">
         <div className="flex justify-between ">
           <form>
@@ -228,7 +228,7 @@ export default function MainLayout({ children }: any) {
               htmlFor="default-search"
               className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
             >
-              Search
+              Хайх
             </label>
 
             <div className="relative">
@@ -253,27 +253,18 @@ export default function MainLayout({ children }: any) {
                 type="search"
                 id="default-search"
                 className="block  p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-[500px]"
-                placeholder="Search Mockups, Logos..."
+                placeholder="хайлт хийх..."
                 required
               />
               <button
                 type="submit"
                 className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Search
+                Хайх
               </button>
             </div>
           </form>
-          <div className="w-[40%] flex justify-between">
-            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
-              <AddCircleOutlineIcon className="mr-2" />
-              Ангилал нэмэх
-            </button>
-            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
-              <ShareIcon className="mr-2" />
-              Дэд Ангилал нэмэх
-            </button>
-          </div>
+          <div className="w-[40%] flex justify-between"></div>
         </div>
         <div>{children}</div>
       </div>
