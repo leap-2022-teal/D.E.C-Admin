@@ -15,7 +15,10 @@ export default function Categories() {
   return (
     <MainLayout>
       {categories?.map((category: any) => (
-        <div className=" border-slate-500 rounded-[10px] border-solid border-2  flex justify-between p-4 my-8 w-[50%]">
+        <div
+          key={category._id}
+          className=" border-slate-500 rounded-[10px] border-solid border-2  flex justify-between p-4 my-8 w-[50%]"
+        >
           {category.name}
           <div className="">
             <button className="bg-amber-300 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded">
