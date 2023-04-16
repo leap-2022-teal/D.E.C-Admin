@@ -7,7 +7,7 @@ export default function CategoryEditModal() {
   return (
     <>
       <button onClick={() => setShowModal(true)}>
-        <EditIcon className="text-amber-300" />
+        <EditIcon className=" text-gray-700 hover:text-gray-500" />
       </button>
 
       {showModal ? (
