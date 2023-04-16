@@ -13,7 +13,7 @@ export default function Products() {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-
+  console.log(products);
   return (
     <MainLayout>
       <div>

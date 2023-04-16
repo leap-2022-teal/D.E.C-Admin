@@ -24,18 +24,18 @@ export default function Categories() {
           <Modal />
           <SubModal />
         </div>
-        <div className="overflow-hidden rounded-lg border border-gray-50 shadow-md m-5 w-[90%]">
-          <div className="w-[50%] ">
+        <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[90%]">
+          <div className="">
             {categories?.map((category: any) => (
               <div
                 key={category._id}
-                className="  rounded-[5px] bg-gray-200 flex justify-between p-4 my-8 w-[100%]"
+                className=" hover:bg-gray-100 flex justify-between p-2 my-2 w-[100%]"
               >
                 {category.name}
                 <div className="">
                   <CategoryEditModal />
                   <button>
-                    <DeleteIcon className="text-red-500 ml-4" />
+                    <DeleteIcon className="text-red-500 ml-4 hover:text-red-400" />
                   </button>
                 </div>
               </div>
