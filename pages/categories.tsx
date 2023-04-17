@@ -5,15 +5,26 @@ import Modal from "@/components/modals/categoryModal";
 import SubModal from "@/components/modals/categorySubModal";
 import CategoryEditModal from "@/components/modals/categoryEditModal";
 import Search from "@/components/search";
-
+import axios from "axios";
+import { SingleCategory } from "./singleCategory";
 export default function Categories() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<any>([]);
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
+
+  // function loadList() {
+
+  // }
+  console.log(categories);
 
   useEffect(() => {
     fetch(`http://localhost:8000/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
-  }, []);
+  }, [isUpdated]);
+
+  function handleDelete() {
+    console.log("sfdssf");
+  }
 
   return (
     <MainLayout>
@@ -27,18 +38,12 @@ export default function Categories() {
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[90%]">
           <div className="">
             {categories?.map((category: any) => (
-              <div
-                key={category._id}
-                className=" hover:bg-gray-100 flex justify-between p-2 my-2 w-[100%]"
-              >
-                {category.name}
-                <div className="">
-                  <CategoryEditModal />
-                  <button>
-                    <DeleteIcon className="text-red-500 ml-4 hover:text-red-400" />
-                  </button>
-                </div>
-              </div>
+              <SingleCategory
+                category={category}
+                // onDelete={loadList}
+                isUpdated={isUpdated}
+                setIsUpdated={setIsUpdated}
+              />
             ))}
           </div>
         </div>
