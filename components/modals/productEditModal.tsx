@@ -33,7 +33,7 @@ export default function ProductEditModal() {
                   <div className="mb-6">
                     <label
                       htmlFor="countries"
-                      className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white"
+                      className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white font-bold"
                     >
                       Ангилал
                     </label>

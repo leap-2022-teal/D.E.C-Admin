@@ -8,10 +8,9 @@ export default function CategorySelector() {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-
   return (
     <>
-      <select>
+      <select onChange={(e: any) => e.target.value}>
         <option value="">Ангилалаа сонгоно уу?</option>
         {categories.map((category: any) => (
           <option key={category._id} value={category._id}>
