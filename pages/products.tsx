@@ -49,24 +49,28 @@ export default function Products() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              <tr className="hover:bg-gray-50">
-                <td>
-                  <img
-                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
-                    alt=""
-                    className=" w-32 py-3 rounded-[5px] object-cover object-center"
-                  />
-                </td>
-                <td className=" text-left">Malcolm Lockyer</td>
-                <td className="text-left">1961</td>
-                <td className="text-left">1961</td>
-                <td className="text-left">
-                  <div className=" pr-20 flex justify-end gap-4">
-                    <ProductEditModal />
-                    <DeleteIcon className=" text-red-600 hover:text-red-300" />
-                  </div>
-                </td>
-              </tr>
+              {products?.map((product: any) => (
+                <>
+                  <tr className="hover:bg-gray-50">
+                    <td>
+                      <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
+                        alt=""
+                        className=" w-32 py-3 rounded-[5px] object-cover object-center"
+                      />
+                    </td>
+                    <td className=" text-left">{product.name}</td>
+                    <td className="text-left">{product.price}</td>
+                    <td className="text-left">{product.stock}</td>
+                    <td className="text-left">
+                      <div className=" pr-20 flex justify-end gap-4">
+                        <ProductEditModal />
+                        <DeleteIcon className=" text-red-600 hover:text-red-300" />
+                      </div>
+                    </td>
+                  </tr>
+                </>
+              ))}
             </tbody>
           </table>
         </div>
