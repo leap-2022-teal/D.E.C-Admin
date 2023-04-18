@@ -9,7 +9,7 @@ export default function ProductAddModal() {
   const [price, setPrice] = useState("");
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
   async function handleFileUpload(event: any) {
@@ -79,10 +79,7 @@ export default function ProductAddModal() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
-                    <CategorySelector
-                      value={categoryId}
-                      onChange={(val) => setCategoryId(val)}
-                    />
+                    <CategorySelector />
                     <label
                       htmlFor="default-input"
                       className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -160,7 +157,7 @@ export default function ProductAddModal() {
                         <div className="spinner-border" role="status"></div>
                       )}
 
-                      {image && <img src={image.path} width="100" alt="" />}
+                      {image && <img src={image} width="100" alt="" />}
                     </div>
                   </div>
                 </div>
