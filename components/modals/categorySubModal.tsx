@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
+import CategorySelector from "./categorySelector";
+import { Value } from "sass";
 
 export default function SubModal() {
   const [showModal, setShowModal] = React.useState(false);
+  const [categoryId, setCategoryId] = useState<any>([]);
 
+  function handleSelected(e: any) {
+    setCategoryId(e);
+  }
   return (
     <>
       <button
@@ -34,6 +40,7 @@ export default function SubModal() {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
+                  <CategorySelector handleSelected={handleSelected} />
                   <div className="mb-6">
                     <label
                       htmlFor="default-input"

@@ -1,30 +1,18 @@
 import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Modal from "@/components/modals/categoryModal";
 import SubModal from "@/components/modals/categorySubModal";
-import CategoryEditModal from "@/components/modals/categoryEditModal";
 import Search from "@/components/search";
-import axios from "axios";
 import { SingleCategory } from "./singleCategory";
 export default function Categories() {
   const [categories, setCategories] = useState<any>([]);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
-
-  // function loadList() {
-
-  // }
-  console.log(categories);
 
   useEffect(() => {
     fetch(`http://localhost:8000/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, [isUpdated]);
-
-  function handleDelete() {
-    console.log("sfdssf");
-  }
 
   return (
     <MainLayout>
@@ -40,7 +28,6 @@ export default function Categories() {
             {categories?.map((category: any) => (
               <SingleCategory
                 category={category}
-                // onDelete={loadList}
                 isUpdated={isUpdated}
                 setIsUpdated={setIsUpdated}
               />

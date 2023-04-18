@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 export function SingleCategory({
   category,
-  onDelete,
+
   isUpdated,
   setIsUpdated,
 }: any) {
@@ -24,7 +24,7 @@ export function SingleCategory({
       setIsUpdated(!isUpdated);
     }
   }
-
+  console.log(category);
   return (
     <div
       key={category._id}
@@ -32,7 +32,7 @@ export function SingleCategory({
     >
       {category.name}
       <div className="">
-        <CategoryEditModal />
+        <CategoryEditModal category={category} />
 
         <button onClick={handleDelete}>
           <DeleteIcon className="text-red-500 ml-4 hover:text-red-400" />

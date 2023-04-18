@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
+import axios from "axios";
 
-export default function CategoryEditModal() {
+// interface Category {
+//   _id: string;
+//   name: string;
+// }
+
+export default function CategoryEditModal({ category }: any) {
   const [showModal, setShowModal] = React.useState(false);
+  const [name, setName] = useState<any>([]);
+
+  useEffect(() => {
+    setName(category.name);
+  }, category);
+
+  function handleUpdate() {
+    axios
+      .put(`http://localhost:8000/categories/${category._id}`, {
+        name: name,
+      })
+      .then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          setName("");
+          setShowModal(false);
+        }
+      });
+  }
 
   return (
     <>
@@ -29,16 +54,15 @@ export default function CategoryEditModal() {
                   </button>
                 </div>
                 {/*body*/}
+
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
-                    <label
-                      htmlFor="default-input"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    ></label>
                     <input
                       placeholder=""
                       type="text"
-                      id="default-input"
+                      id=""
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
@@ -55,7 +79,7 @@ export default function CategoryEditModal() {
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleUpdate}
                   >
                     хадгалах
                   </button>
