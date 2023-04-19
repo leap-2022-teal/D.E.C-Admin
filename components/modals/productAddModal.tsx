@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import CategorySelector from "../categorySelector";
 import axios from "axios";
+import CategorySelector from "./categorySelector";
 export default function ProductAddModal() {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState("");
@@ -54,7 +54,8 @@ export default function ProductAddModal() {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+      >
         <AddCircleOutlineIcon className=" mr-2" />
         Бүтээгдэхүүн нэмэх
       </button>
@@ -70,7 +71,8 @@ export default function ProductAddModal() {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн нэмэх</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -82,7 +84,8 @@ export default function ProductAddModal() {
                     <CategorySelector />
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны нэр
                     </label>
                     <input
@@ -95,7 +98,8 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Details
                     </label>
                     <input
@@ -108,7 +112,8 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны үнэ
                     </label>
                     <input
@@ -122,7 +127,8 @@ export default function ProductAddModal() {
 
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Color
                     </label>
                     <input
@@ -135,7 +141,8 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Size
                     </label>
                     <input
@@ -166,13 +173,15 @@ export default function ProductAddModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={createProducts}>
+                    onClick={createProducts}
+                  >
                     хадгалах
                   </button>
                 </div>

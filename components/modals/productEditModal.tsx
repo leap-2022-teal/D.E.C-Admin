@@ -1,6 +1,6 @@
 import React from "react";
 import CreateIcon from "@mui/icons-material/Create";
-import CategorySelector from "../categorySelector";
+import CategorySelector from "./categorySelector";
 
 export default function ProductEditModal() {
   const [showModal, setShowModal] = React.useState(false);
