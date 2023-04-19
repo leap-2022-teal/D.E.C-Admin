@@ -1,15 +1,30 @@
 import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
+import axios from "axios";
 import CategorySelector from "./categorySelector";
-import { Value } from "sass";
+import Categories from "@/pages/categories";
 
 export default function SubModal() {
   const [showModal, setShowModal] = React.useState(false);
   const [categoryId, setCategoryId] = useState<any>([]);
+  const [subCategory, setSubCategory] = useState<any>();
 
   function handleSelected(e: any) {
     setCategoryId(e);
   }
+
+  function handleSave() {
+    axios
+      .post(`http://localhost:8000/categories`, { name: subCategory })
+      .then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          setShowModal(false);
+          setSubCategory("");
+        }
+      });
+  }
+  console.log(Categories);
   return (
     <>
       <button
@@ -40,13 +55,18 @@ export default function SubModal() {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <CategorySelector handleSelected={handleSelected} />
+                  <CategorySelector
+                    handleSelected={handleSelected}
+                    value={categoryId}
+                  />
                   <div className="mb-6">
                     <label
                       htmlFor="default-input"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     ></label>
                     <input
+                      value={subCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
                       placeholder="Дэд ангилалаа оруулана уу?"
                       type="text"
                       id="default-input"
@@ -66,7 +86,7 @@ export default function SubModal() {
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleSave}
                   >
                     хадгалах
                   </button>
