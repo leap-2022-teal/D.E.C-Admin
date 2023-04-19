@@ -4,14 +4,15 @@ import Modal from "@/components/modals/categoryModal";
 import SubModal from "@/components/modals/categorySubModal";
 import Search from "@/components/search";
 import { SingleCategory } from "./singleCategory";
+import axios from "axios";
 export default function Categories() {
   const [categories, setCategories] = useState<any>([]);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/categories`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
+    axios
+      .get(`http://localhost:8000/categories`)
+      .then((res) => setIsUpdated(res.data));
   }, [isUpdated]);
 
   return (

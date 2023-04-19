@@ -4,16 +4,17 @@ import ProductEditModal from "@/components/modals/productEditModal";
 import Search from "@/components/search";
 import React, { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/products`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    axios
+      .get(`http://localhost:8000/products`)
+      .then((res) => setProducts(res.data));
   }, []);
-  console.log(products);
+
   return (
     <MainLayout>
       <div>
@@ -29,8 +30,7 @@ export default function Products() {
                 <th className=" w-40 text-gray-900" scope="col"></th>
                 <th
                   className=" text-left font-medium text-gray-900"
-                  scope="col"
-                >
+                  scope="col">
                   Бүтээгдэхүүн
                 </th>
                 <th className="text-left font-medium text-gray-900" scope="col">
@@ -38,14 +38,12 @@ export default function Products() {
                 </th>
                 <th
                   className=" w-40 text-left font-medium text-gray-900"
-                  scope="col"
-                >
+                  scope="col">
                   Нөөц
                 </th>
                 <th
                   className="text-left font-medium text-gray-900"
-                  scope="col"
-                ></th>
+                  scope="col"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">

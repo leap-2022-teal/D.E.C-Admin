@@ -27,8 +27,7 @@ export default function SubModal() {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
-      >
+        className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
         <ShareIcon className="mr-2" />
         Дэд Ангилал нэмэх
       </button>
@@ -44,8 +43,7 @@ export default function SubModal() {
                   <h3 className="text-3xl font-semibold">Дэд ангилал нэмэх</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -60,8 +58,7 @@ export default function SubModal() {
                   <div className="mb-6">
                     <label
                       htmlFor="default-input"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    ></label>
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
                     <input
                       value={subCategory}
                       onChange={(e) => setSubCategory(e.target.value)}
@@ -77,15 +74,13 @@ export default function SubModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleSave}
-                  >
+                    onClick={handleSave}>
                     хадгалах
                   </button>
                 </div>
