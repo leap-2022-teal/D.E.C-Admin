@@ -2,23 +2,25 @@ import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 
-// interface Category {
-//   _id: string;
-//   name: string;
-// }
+interface subCategory {
+  title: string;
+}
 
 export default function CategoryEditModal({ category }: any) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
+  const [subCategories, setSubCategories] = useState<subCategory[]>([]);
 
   useEffect(() => {
     setName(category.name);
-  }, category);
+    setSubCategories(category.subCategories);
+  }, []);
 
   function handleUpdate() {
     axios
       .put(`http://localhost:8000/categories/${category._id}`, {
         name: name,
+        subCategories: subCategories,
       })
       .then((res) => {
         const { status } = res;
@@ -29,6 +31,14 @@ export default function CategoryEditModal({ category }: any) {
       });
   }
 
+  function handleSubCategory(e: any, index: number) {
+    console.log(index);
+    const newState = [...subCategories];
+    newState[index] = { title: e };
+    setSubCategories(newState);
+  }
+  console.log(subCategories);
+  console.log(category.subCategories);
   return (
     <>
       <button onClick={() => setShowModal(true)}>
@@ -66,6 +76,31 @@ export default function CategoryEditModal({ category }: any) {
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
+                  {subCategories?.map((subCategory: any, index: number) => {
+                    return (
+                      <>
+                        <div className="mb-6">
+                          <input
+                            placeholder=""
+                            type="text"
+                            id=""
+                            onChange={(e) =>
+                              handleSubCategory(e.target.value, index)
+                            }
+                            value={subCategory.title}
+                            className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
+                        </div>
+                      </>
+                    );
+                  })}
+                  <button
+                    onClick={() =>
+                      setSubCategories([...subCategories, { title: "" }])
+                    }
+                  >
+                    Sub Category nemeh
+                  </button>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

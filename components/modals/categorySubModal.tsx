@@ -14,17 +14,15 @@ export default function SubModal() {
   }
 
   function handleSave() {
-    axios
-      .post(`http://localhost:8000/categories`, { name: subCategory })
-      .then((res) => {
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-          setSubCategory("");
-        }
-      });
+    axios.put(`http://localhost:8000/categories`, {}).then((res) => {
+      const { status } = res;
+      if (status === 200) {
+        setShowModal(false);
+        setSubCategory("");
+      }
+    });
+    console.log(Categories);
   }
-  console.log(Categories);
   return (
     <>
       <button

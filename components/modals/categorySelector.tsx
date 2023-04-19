@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 export default function CategorySelector({ handleSelected }: any) {
   const [categories, setCategories] = useState([]);
-  // const [selected, setSelected] = useState<any>();
 
   useEffect(() => {
     fetch(`http://localhost:8000/categories`)
@@ -12,6 +11,7 @@ export default function CategorySelector({ handleSelected }: any) {
 
   function handleChange(e: any) {
     handleSelected(e.target.value);
+    console.log(handleChange);
   }
   return (
     <>
