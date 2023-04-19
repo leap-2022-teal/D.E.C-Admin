@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CategorySelector from "./categorySelector";
 import { useCreateProduct } from "./createProducts";
-import { useQuery } from "react-query";
 
 export default function ProductAddModal() {
   // const createProduct = useCreateProduct({da});
@@ -15,7 +14,7 @@ export default function ProductAddModal() {
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
-  const { createNewProduct }: createNewProduct = useCreateProduct();
+  const createNewProduct = useCreateProduct();
 
   async function handleFileUpload(event: any) {
     setUploading(true);
