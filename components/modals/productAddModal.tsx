@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import axios from "axios";
 import CategorySelector from "./categorySelector";
+import { useCreateProduct } from "./createProducts";
+import { useQuery } from "react-query";
+
 export default function ProductAddModal() {
-  const [showModal, setShowModal] = React.useState(false);
+  // const createProduct = useCreateProduct({da});
+  const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [price, setPrice] = useState("");
@@ -12,6 +15,8 @@ export default function ProductAddModal() {
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
+  const { createNewProduct }: createNewProduct = useCreateProduct();
+
   async function handleFileUpload(event: any) {
     setUploading(true);
     const imageFile = event.target.files[0];
@@ -19,7 +24,7 @@ export default function ProductAddModal() {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    await fetch(`${process.env.REACT_APP_API_URL}/upload-image`, {
+    await fetch(`http://localhost:8000/upload-image`, {
       method: "POST",
       body: formData,
     })
@@ -29,33 +34,31 @@ export default function ProductAddModal() {
         setUploading(false);
       });
   }
-  function createProducts() {
-    axios
-      .post(`http://localhost:8000/products`, {
-        name: name,
-        details: details,
-        price: price,
-        color: color,
-        sizes: size,
-      })
-      .then((res) => {
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-          setName("");
-          setDetails("");
-          setPrice("");
-          setColor("");
-          setSize("");
-        }
-      });
+  console.log({
+    name,
+    details,
+    price,
+    color,
+    categoryId,
+    size,
+  });
+
+  function handleSubmit() {
+    createNewProduct({
+      name,
+      details,
+      price,
+      color,
+      categoryId,
+      size,
+    });
   }
+
   return (
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      >
+        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
         <AddCircleOutlineIcon className=" mr-2" />
         Бүтээгдэхүүн нэмэх
       </button>
@@ -71,8 +74,7 @@ export default function ProductAddModal() {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн нэмэх</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -81,11 +83,13 @@ export default function ProductAddModal() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
-                    <CategorySelector />
+                    <CategorySelector
+                      value={""}
+                      handleSelected={setCategoryId}
+                    />
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Барааны нэр
                     </label>
                     <input
@@ -98,8 +102,7 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Details
                     </label>
                     <input
@@ -112,8 +115,7 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Барааны үнэ
                     </label>
                     <input
@@ -121,14 +123,13 @@ export default function ProductAddModal() {
                       type="text"
                       id="default-input"
                       value={price}
-                      onChange={(e) => setPrice(e.target.value)}
+                      onChange={(e) => Number(setPrice(e.target.value))}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Color
                     </label>
                     <input
@@ -139,10 +140,9 @@ export default function ProductAddModal() {
                       onChange={(e) => setColor(e.target.value)}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
-                    <label
+                    {/* <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Size
                     </label>
                     <input
@@ -152,7 +152,7 @@ export default function ProductAddModal() {
                       value={size}
                       onChange={(e) => setSize(e.target.value)}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
+                    /> */}
                     <div>
                       <input
                         type="file"
@@ -173,15 +173,13 @@ export default function ProductAddModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={createProducts}
-                  >
+                    onClick={handleSubmit}>
                     хадгалах
                   </button>
                 </div>
