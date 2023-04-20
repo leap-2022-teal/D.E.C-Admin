@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
+import ShareIcon from "@mui/icons-material/Share";
 
 interface subCategory {
   title: string;
@@ -41,8 +42,10 @@ export default function CategoryEditModal({ category }: any) {
   console.log(category.subCategories);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
-        <EditIcon className=" text-gray-700 hover:text-gray-500" />
+      <button
+        onClick={() => setShowModal(true)}
+        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
+        <EditIcon className=" text-gray-700" />
       </button>
 
       {showModal ? (
@@ -56,8 +59,7 @@ export default function CategoryEditModal({ category }: any) {
                   <h3 className="text-3xl font-semibold">Ангилал засах</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -66,7 +68,8 @@ export default function CategoryEditModal({ category }: any) {
                 {/*body*/}
 
                 <div className="relative p-6 flex-auto">
-                  <div className="mb-6">
+                  <span className=" font-bold p">Ангилал</span>
+                  <div className="mb-6 mt-4">
                     <input
                       placeholder=""
                       type="text"
@@ -76,10 +79,11 @@ export default function CategoryEditModal({ category }: any) {
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
+                  <span className=" font-bold ">Дэд ангилал</span>
                   {subCategories?.map((subCategory: any, index: number) => {
                     return (
                       <>
-                        <div className="mb-6">
+                        <div className="mb-6 mt-4">
                           <input
                             placeholder=""
                             type="text"
@@ -94,12 +98,14 @@ export default function CategoryEditModal({ category }: any) {
                       </>
                     );
                   })}
+
                   <button
                     onClick={() =>
                       setSubCategories([...subCategories, { title: "" }])
                     }
-                  >
-                    Sub Category nemeh
+                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    <ShareIcon className="mr-2" />
+                    Дэд Ангилал нэмэх
                   </button>
                 </div>
                 {/*footer*/}
@@ -107,15 +113,13 @@ export default function CategoryEditModal({ category }: any) {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
-                  >
+                    onClick={() => setShowModal(false)}>
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleUpdate}
-                  >
+                    onClick={handleUpdate}>
                     хадгалах
                   </button>
                 </div>

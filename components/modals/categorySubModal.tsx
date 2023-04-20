@@ -1,36 +1,47 @@
-import React, { useState } from "react";
-import ShareIcon from "@mui/icons-material/Share";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CategorySelector from "./categorySelector";
 import Categories from "@/pages/categories";
 
-export default function SubModal() {
+interface subCategory {
+  title: string;
+}
+
+export default function SubModal({ category }: any) {
   const [showModal, setShowModal] = React.useState(false);
   const [categoryId, setCategoryId] = useState<any>([]);
-  const [subCategory, setSubCategory] = useState<any>();
+  const [subCategory, setSubCategory] = useState<subCategory[]>([]);
 
   function handleSelected(e: any) {
     setCategoryId(e);
   }
 
+  useEffect(() => {
+    setSubCategory(category.subCategories?.title);
+  }, []);
+
   function handleSave() {
-    axios.put(`http://localhost:8000/categories`, {}).then((res) => {
-      const { status } = res;
-      if (status === 200) {
-        setShowModal(false);
-        setSubCategory("");
-      }
-    });
+    axios
+      .post(`http://localhost:8000/categories/${categoryId}}`, {
+        subCategory: subCategory,
+      })
+      .then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          setShowModal(false);
+        }
+      });
     console.log(Categories);
   }
   return (
     <>
-      <button
+      {/* <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
+        className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
+      >
         <ShareIcon className="mr-2" />
         Дэд Ангилал нэмэх
-      </button>
+      </button> */}
 
       {showModal ? (
         <>
@@ -53,15 +64,15 @@ export default function SubModal() {
                 <div className="relative p-6 flex-auto">
                   <CategorySelector
                     handleSelected={handleSelected}
-                    value={categoryId}
+                    value={category.name}
                   />
                   <div className="mb-6">
                     <label
                       htmlFor="default-input"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
                     <input
-                      value={subCategory}
-                      onChange={(e) => setSubCategory(e.target.value)}
+                      // value={subCategory}
+                      // onChange={(e) => setSubCategory(e.target.value)}
                       placeholder="Дэд ангилалаа оруулана уу?"
                       type="text"
                       id="default-input"

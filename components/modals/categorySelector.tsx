@@ -16,7 +16,7 @@ export default function CategorySelector({ handleSelected, value }: Props) {
 
   function handleChange(e: any) {
     handleSelected(e.target.value);
-    console.log(handleChange);
+    console.log(e.target.value);
   }
   return (
     <>
