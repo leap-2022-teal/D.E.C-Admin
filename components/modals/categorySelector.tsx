@@ -16,13 +16,14 @@ export default function CategorySelector({ handleSelected, value }: Props) {
 
   function handleChange(e: any) {
     handleSelected(e.target.value);
-    console.log(handleChange);
+    console.log(e.target.value);
   }
   return (
     <>
       <select
         onChange={handleChange}
-        className="mb-4 border-2 rounded-[5px] border-gray-300">
+        className="mb-4 border-2 rounded-[5px] border-gray-300"
+      >
         <option value="">Ангилалаа сонгоно уу?</option>
         {categories.map((category: any) => (
           <option key={category._id} value={category._id} label={category.name}>
