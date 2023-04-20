@@ -10,7 +10,7 @@ interface PropType {
 
 export function SingleProduct({ product }: PropType) {
   function handleDelete() {
-    if (window.confirm(`${product?.name}-ыг  бүтээгдэхүүн устгах уу ?`)) {
+    if (window.confirm(`${product?.name}-г  бүтээгдэхүүн устгах уу ?`)) {
       axios
         .delete(`http://localhost:8000/products/${product?._id}`)
         .then((res) => {
@@ -39,8 +39,11 @@ export function SingleProduct({ product }: PropType) {
           <div className=" pr-20 flex justify-end gap-4">
             <ProductSizesAdd />
             <ProductEditModal product={product} />
-            <button onClick={handleDelete}>
-              <DeleteIcon className=" text-red-600 hover:text-red-300" />
+            <button
+              onClick={handleDelete}
+              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+            >
+              <DeleteIcon className=" text-red-600" />
             </button>
           </div>
         </td>

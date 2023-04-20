@@ -1,9 +1,34 @@
-import React from "react";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import React, { useState } from "react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import axios from "axios";
 
 export default function AdminAddModal() {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState<any>("");
+  const [email, setEmail] = useState<any>("");
+  const [password, setPassword] = useState<any>("");
+  // const [role, setRole] = useState<any>("");
+
+  function createUsers() {
+    axios
+      .post(`http://localhost:8000/admins`, {
+        userName: userName,
+        email: email,
+        // role,
+        password: password,
+      })
+      .then((res) => {
+        const { status } = res;
+
+        if (status === 200) {
+          setShowModal(false);
+          setUserName("");
+          setEmail("");
+          setPassword("");
+          // setRole("");
+        }
+      });
+  }
 
   return (
     <>
@@ -43,8 +68,8 @@ export default function AdminAddModal() {
                       placeholder="Админ нэрээ оруулна уу?"
                       type="text"
                       id="default-input"
-                      //   value={name}
-                      //   onChange={(e) => setName(e.target.value)}
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
                       className=" mt-4 mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                     <label className=" font-bold" htmlFor="">
@@ -54,12 +79,12 @@ export default function AdminAddModal() {
                       placeholder="Мэйлээ оруулна уу?"
                       type="text"
                       id="default-input"
-                      //   value={name}
-                      //   onChange={(e) => setName(e.target.value)}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 
-                    <select
+                    {/* <select
                       className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300"
                       id=""
                     >
@@ -67,17 +92,17 @@ export default function AdminAddModal() {
                       <option>Super Admin</option>
                       <option>Admin</option>
                       <option>Moderator</option>
-                    </select>
+                    </select> */}
                     <br></br>
                     <label className=" font-bold" htmlFor="">
                       Нууц үг
                     </label>
                     <input
                       placeholder="Нууц үг ээ оруулна уу?"
-                      type="text"
+                      type="password"
                       id="default-input"
-                      //   value={name}
-                      //   onChange={(e) => setName(e.target.value)}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
@@ -94,7 +119,7 @@ export default function AdminAddModal() {
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    // onClick={createCategory}
+                    onClick={createUsers}
                   >
                     хадгалах
                   </button>
