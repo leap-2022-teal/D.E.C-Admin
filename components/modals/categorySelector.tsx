@@ -22,8 +22,7 @@ export default function CategorySelector({ handleSelected, value }: Props) {
     <>
       <select
         onChange={handleChange}
-        className="mb-4 border-2 rounded-[5px] border-gray-300"
-      >
+        className="mb-4 border-2 rounded-[5px] border-gray-300">
         <option value="">Ангилалаа сонгоно уу?</option>
         {categories.map((category: any) => (
           <option key={category._id} value={category._id} label={category.name}>

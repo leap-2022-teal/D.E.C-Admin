@@ -1,19 +1,39 @@
 import MainLayout from "@/components/MainLayout";
 import ProductAddModal from "@/components/modals/productAddModal";
-import ProductEditModal from "@/components/modals/productEditModal";
+
 import Search from "@/components/search";
 import React, { useEffect, useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import { SingleProduct } from "@/components/singleProduct";
+
+interface Stock {
+  size: number;
+  stock: number;
+}
+export interface Product {
+  name: string;
+  details: string;
+  price: number;
+  color: string;
+  categoryId: string;
+  sizes: Stock[];
+  image: {
+    path: string;
+    width: number;
+    height: number;
+  };
+  _id: string;
+}
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
     axios
       .get(`http://localhost:8000/products`)
       .then((res) => setProducts(res.data));
   }, []);
+  console.log(products);
 
   return (
     <MainLayout>
@@ -47,27 +67,8 @@ export default function Products() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-              {products?.map((product: any) => (
-                <>
-                  <tr className="hover:bg-gray-50">
-                    <td>
-                      <img
-                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
-                        alt=""
-                        className=" w-32 py-3 rounded-[5px] object-cover object-center"
-                      />
-                    </td>
-                    <td className=" text-left">{product.name}</td>
-                    <td className="text-left">{product.price}</td>
-                    <td className="text-left">{product.stock}</td>
-                    <td className="text-left">
-                      <div className=" pr-20 flex justify-end gap-4">
-                        <ProductEditModal />
-                        <DeleteIcon className=" text-red-600 hover:text-red-300" />
-                      </div>
-                    </td>
-                  </tr>
-                </>
+              {products?.map((product: Product) => (
+                <SingleProduct product={product} key={product._id} />
               ))}
             </tbody>
           </table>
