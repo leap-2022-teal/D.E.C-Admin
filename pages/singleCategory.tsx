@@ -1,7 +1,6 @@
 import CategoryEditModal from "@/components/modals/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import { useRouter } from "next/router";
 import ClearIcon from "@mui/icons-material/Clear";
 
 export function SingleCategory({ category }: any) {
@@ -19,8 +18,6 @@ export function SingleCategory({ category }: any) {
           if (status === 200) {
           }
         });
-      // console.log("deleted");
-      // setIsUpdated(!isUpdated);
     }
   }
 
