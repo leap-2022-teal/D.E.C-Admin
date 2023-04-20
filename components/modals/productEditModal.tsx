@@ -21,7 +21,8 @@ export default function ProductEditModal() {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн засах</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -32,13 +33,15 @@ export default function ProductEditModal() {
                   <div className="mb-6">
                     <label
                       htmlFor="countries"
-                      className="block mb-2 mt-4 text-sm font-medium text-gray-900 dark:text-white font-bold">
+                      className="block mb-2 mt-4 text-sm text-gray-900 dark:text-white font-bold"
+                    >
                       Ангилал
                     </label>
 
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны нэр
                     </label>
                     <input
@@ -49,7 +52,8 @@ export default function ProductEditModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны үнэ
                     </label>
                     <input
@@ -60,7 +64,8 @@ export default function ProductEditModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Нөөц
                     </label>
                     <input
@@ -71,7 +76,8 @@ export default function ProductEditModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Image URL
                     </label>
                     <input
@@ -87,13 +93,15 @@ export default function ProductEditModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хадгалах
                   </button>
                 </div>

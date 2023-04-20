@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
+import ShareIcon from "@mui/icons-material/Share";
 
 interface subCategory {
   title: string;
@@ -66,7 +67,8 @@ export default function CategoryEditModal({ category }: any) {
                 {/*body*/}
 
                 <div className="relative p-6 flex-auto">
-                  <div className="mb-6">
+                  <span className=" font-bold p">Ангилал</span>
+                  <div className="mb-6 mt-4">
                     <input
                       placeholder=""
                       type="text"
@@ -76,10 +78,11 @@ export default function CategoryEditModal({ category }: any) {
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
+                  <span className=" font-bold ">Дэд ангилал</span>
                   {subCategories?.map((subCategory: any, index: number) => {
                     return (
                       <>
-                        <div className="mb-6">
+                        <div className="mb-6 mt-4">
                           <input
                             placeholder=""
                             type="text"
@@ -94,12 +97,15 @@ export default function CategoryEditModal({ category }: any) {
                       </>
                     );
                   })}
+
                   <button
                     onClick={() =>
                       setSubCategories([...subCategories, { title: "" }])
                     }
+                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
                   >
-                    Sub Category nemeh
+                    <ShareIcon className="mr-2" />
+                    Дэд Ангилал нэмэх
                   </button>
                 </div>
                 {/*footer*/}
