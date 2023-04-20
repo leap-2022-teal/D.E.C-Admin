@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CategorySelector from "./categorySelector";
 import { useCreateProduct } from "./createProducts";
-<<<<<<< HEAD
-=======
 
 interface Sizes {
   size: number;
   stock: number;
 }
->>>>>>> 791c47ec626228e332369bdfdbfe0927dc15cf96
 
 export default function ProductAddModal() {
   const [showModal, setShowModal] = useState(false);
