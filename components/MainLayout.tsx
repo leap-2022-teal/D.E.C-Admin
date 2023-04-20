@@ -34,6 +34,20 @@ export default function MainLayout({ children }: any) {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+          <div className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+            <div className="relative h-10 w-10">
+              <img
+                className="h-full w-full rounded-full object-cover object-center"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
+            </div>
+
+            <div className=" flex items-end font-medium text-gray-700">
+              Нямбаатар
+            </div>
+          </div>
           <ul className="space-y-2 font-medium">
             <li>
               <a
@@ -146,7 +160,7 @@ export default function MainLayout({ children }: any) {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Admins</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Админ</span>
               </Link>
             </li>
             <li>
