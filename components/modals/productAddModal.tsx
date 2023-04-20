@@ -15,7 +15,7 @@ export default function ProductAddModal() {
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
-  const { createNewProduct }: createNewProduct = useCreateProduct();
+  const { createNewProduct }: any = useCreateProduct();
 
   async function handleFileUpload(event: any) {
     setUploading(true);
