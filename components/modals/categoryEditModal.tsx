@@ -42,8 +42,11 @@ export default function CategoryEditModal({ category }: any) {
   console.log(category.subCategories);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
-        <EditIcon className=" text-gray-700 hover:text-gray-500" />
+      <button
+        onClick={() => setShowModal(true)}
+        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
+      >
+        <EditIcon className=" text-gray-700" />
       </button>
 
       {showModal ? (
