@@ -5,8 +5,9 @@ import Search from "@/components/search";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SingleProduct } from "@/components/singleProduct";
+import { types } from "sass";
 
-interface Stock {
+export interface Stock {
   size: number;
   stock: number;
 }
@@ -58,6 +59,11 @@ export default function Products() {
                 </th>
                 <th
                   className=" w-40 text-left font-medium text-gray-900"
+                  scope="col">
+                  size
+                </th>
+                <th
+                  className="  text-left font-medium text-gray-900"
                   scope="col">
                   Нөөц
                 </th>
