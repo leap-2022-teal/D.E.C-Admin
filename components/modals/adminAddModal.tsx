@@ -7,14 +7,14 @@ export default function AdminAddModal() {
   const [userName, setUserName] = useState<any>("");
   const [email, setEmail] = useState<any>("");
   const [password, setPassword] = useState<any>("");
-  // const [role, setRole] = useState<any>("");
+  const [role, setRole] = useState<any>("");
 
   function createUsers() {
     axios
-      .post(`http://localhost:8000/admins`, {
+      .post(`http://localhost:8000/users`, {
         userName: userName,
         email: email,
-        // role,
+        role: role,
         password: password,
       })
       .then((res) => {
@@ -25,7 +25,7 @@ export default function AdminAddModal() {
           setUserName("");
           setEmail("");
           setPassword("");
-          // setRole("");
+          setRole("");
         }
       });
   }
@@ -84,15 +84,15 @@ export default function AdminAddModal() {
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 
-                    {/* <select
+                    <select
+                      onChange={(e) => setRole(e.target.value)}
                       className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300"
                       id=""
                     >
                       <option value="">Role</option>
-                      <option>Super Admin</option>
                       <option>Admin</option>
                       <option>Moderator</option>
-                    </select> */}
+                    </select>
                     <br></br>
                     <label className=" font-bold" htmlFor="">
                       Нууц үг

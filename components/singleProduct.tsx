@@ -32,7 +32,7 @@ export function SingleProduct({ product }: PropType) {
             className=" w-32 py-3 rounded-[5px] object-cover object-center"
           />
         </td>
-        <td className=" text-left">{product.name}</td>
+        <td className=" text-left font-bold">{product.name}</td>
         <td className="text-left">${product.price}</td>
         <td className="text-left">{product.sizes[0].stock}</td>
         <td className="text-left">
