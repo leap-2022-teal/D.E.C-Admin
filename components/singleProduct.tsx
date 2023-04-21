@@ -1,9 +1,11 @@
 import axios from "axios";
 import ProductEditModal from "./modals/productEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ProductSizesAdd from "./modals/productSizesAdd";
 import { Product } from "@/pages/products";
-
+interface Size {
+  size: number;
+  stock: number;
+}
 interface PropType {
   product: Product | undefined;
 }
@@ -34,15 +36,23 @@ export function SingleProduct({ product }: PropType) {
         </td>
         <td className=" text-left">{product.name}</td>
         <td className="text-left">${product.price}</td>
-        <td className="text-left">{product.sizes[0].stock}</td>
+        <td className="text-left ">
+          {product.sizes.map((size: Size) => {
+            return <div>{size.size}</div>;
+          })}
+        </td>
+        <td className="text-left ">
+          {product.sizes.map((size: Size) => {
+            return <div>{size.stock}</div>;
+          })}
+        </td>
+
         <td className="text-left">
           <div className=" pr-20 flex justify-end gap-4">
-            <ProductSizesAdd />
             <ProductEditModal product={product} />
             <button
               onClick={handleDelete}
-              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
-            >
+              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
               <DeleteIcon className=" text-red-600" />
             </button>
           </div>
