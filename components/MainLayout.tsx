@@ -163,8 +163,8 @@ export default function MainLayout({ children }: any) {
                 <span className="flex-1 ml-3 whitespace-nowrap">Админ</span>
               </Link>
             </li>
-            {/* <li> */}
-            {/* <Link
+            <li>
+              <Link
                 href={"/users"}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
@@ -185,7 +185,7 @@ export default function MainLayout({ children }: any) {
                   Хэрэглэгчид
                 </span>
               </Link>
-            </li> */}
+            </li>
             <li>
               <Link
                 href={"/orders"}

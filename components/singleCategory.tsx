@@ -2,12 +2,12 @@ import CategoryEditModal from "@/components/modals/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useState } from "react";
 
 export function SingleCategory({ category }: any) {
-  function handleDelete(selection: any, index: number) {
-    console.log(category.subCategories);
-    console.log(selection, index);
+  const [showModal, setShowModal] = useState(false);
 
+  function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
       axios
         .delete(`http://localhost:8000/categories/${category._id} `)
@@ -19,7 +19,25 @@ export function SingleCategory({ category }: any) {
     }
   }
 
-  function deleteSubCategory() {}
+  function handleDeleteSubCategory() {
+    if (category._id) {
+      console.log(category);
+    }
+    axios
+      .put(
+        `http://localhost:8000/categories/${category.subCategories[0]._id}`,
+        {
+          // subCategories: subCategories,
+        }
+      )
+      .then((res) => {
+        console.log(category._id);
+        const { status } = res;
+        if (status === 200) {
+          setShowModal(false);
+        }
+      });
+  }
   return (
     <>
       <div
@@ -31,11 +49,11 @@ export function SingleCategory({ category }: any) {
         </div>
 
         <div className="">
-          {category.subCategories?.map((subTitle: any, index: number) => (
+          {category.subCategories?.map((subTitle: any) => (
             <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
               {subTitle.title}
               <div className=" hover:bg-gray-300 rounded-[5px] ml-3">
-                <button onClick={() => handleDelete("subCategory", index)}>
+                <button onClick={handleDeleteSubCategory}>
                   <ClearIcon className=" text-red-500 hover:text-red-400 " />
                 </button>
               </div>
@@ -47,7 +65,7 @@ export function SingleCategory({ category }: any) {
           <CategoryEditModal category={category} />
 
           <button
-            onClick={() => handleDelete("category", 0)}
+            onClick={handleDelete}
             className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
           >
             <DeleteIcon className="text-red-500 " />
