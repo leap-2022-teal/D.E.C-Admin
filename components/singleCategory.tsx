@@ -1,8 +1,8 @@
 import CategoryEditModal from "@/components/modals/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
+import SingleSubCategory from "./modals/singleSubCategory";
 
 export function SingleCategory({ category }: any) {
   const [showModal, setShowModal] = useState(false);
@@ -19,25 +19,6 @@ export function SingleCategory({ category }: any) {
     }
   }
 
-  function handleDeleteSubCategory() {
-    if (category._id) {
-      console.log(category);
-    }
-    axios
-      .put(
-        `http://localhost:8000/categories/${category.subCategories[0]._id}`,
-        {
-          // subCategories: subCategories,
-        }
-      )
-      .then((res) => {
-        console.log(category._id);
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-        }
-      });
-  }
   return (
     <>
       <div
@@ -49,15 +30,19 @@ export function SingleCategory({ category }: any) {
         </div>
 
         <div className="">
-          {category.subCategories?.map((subTitle: any) => (
-            <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
-              {subTitle.title}
-              <div className=" hover:bg-gray-300 rounded-[5px] ml-3">
-                <button onClick={handleDeleteSubCategory}>
-                  <ClearIcon className=" text-red-500 hover:text-red-400 " />
-                </button>
-              </div>
-            </div>
+          {category.subCategories?.map((subCategory: any) => (
+            <SingleSubCategory
+              categoryId={category._id}
+              subCategory={subCategory}
+            />
+            // <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
+            //   {subTitle.title}
+            //   <div className=" hover:bg-gray-300 rounded-[5px] ml-3">
+            //     <button onClick={handleDeleteSubCategory}>
+            //       <ClearIcon className=" text-red-500 hover:text-red-400 " />
+            //     </button>
+            //   </div>
+            // </div>
           ))}
         </div>
 
