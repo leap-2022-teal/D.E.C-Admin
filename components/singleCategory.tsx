@@ -1,8 +1,8 @@
 import CategoryEditModal from "@/components/modals/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
+
 import { Categories } from "@/pages/categories";
 
 interface PropType {
@@ -45,11 +45,13 @@ export function SingleCategory({ category }: PropType) {
   // }
 
   if (!category) return null;
+
   return (
     <>
       <div
         key={category._id}
-        className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] ">
+        className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] "
+      >
         <div className=" text-gray-700 flex items-center font-bold ">
           {category.name}
         </div>
@@ -64,6 +66,7 @@ export function SingleCategory({ category }: PropType) {
                 </button>
               </div>
             </div>
+
           ))}
         </div> */}
 
@@ -72,7 +75,8 @@ export function SingleCategory({ category }: PropType) {
 
           <button
             onClick={handleDelete}
-            className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
+            className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
+          >
             <DeleteIcon className="text-red-500 " />
           </button>
         </div>
