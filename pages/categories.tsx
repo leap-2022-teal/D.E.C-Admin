@@ -4,9 +4,16 @@ import Modal from "@/components/modals/categoryModal";
 import Search from "@/components/search";
 import { SingleCategory } from "../components/singleCategory";
 import axios from "axios";
-export default function Categories() {
-  const [categories, setCategories] = useState<any>([]);
 
+export interface Categories {
+  name: string;
+  _id: string;
+  parentId?: string;
+  subCategory?: any;
+}
+export default function Categories() {
+  const [categories, setCategories] = useState([]);
+  console.log(categories);
   useEffect(() => {
     axios
       .get(`http://localhost:8000/categories`)
@@ -25,8 +32,8 @@ export default function Categories() {
         </div>
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] pt-[100px]">
           <div className="">
-            {categories?.map((category: any) => (
-              <SingleCategory category={category} />
+            {categories?.map((category: Categories) => (
+              <SingleCategory category={category} key={category._id} />
             ))}
           </div>
         </div>

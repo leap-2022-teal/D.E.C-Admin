@@ -5,7 +5,6 @@ import Search from "@/components/search";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { SingleProduct } from "@/components/singleProduct";
-import { types } from "sass";
 
 export interface Stock {
   size: number;
