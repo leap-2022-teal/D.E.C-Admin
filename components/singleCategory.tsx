@@ -4,14 +4,14 @@ import axios from "axios";
 import { useState } from "react";
 
 import { Categories } from "@/pages/categories";
+import SingleSubCategories from "./singleSubCategories";
 
 interface PropType {
   category: Categories | undefined;
 }
 
 export function SingleCategory({ category }: PropType) {
-  const [showModal, setShowModal] = useState(false);
-
+  console.log(category);
   function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
       axios
@@ -24,26 +24,6 @@ export function SingleCategory({ category }: PropType) {
     }
   }
 
-  // function handleDeleteSubCategory() {
-  //   if (category?._id) {
-  //     console.log(category);
-  //   }
-  //   axios
-  //     .put(
-  //       `http://localhost:8000/categories/${category.subCategories[0]._id}`,
-  //       {
-  //         // subCategories: subCategories,
-  //       }
-  //     )
-  //     .then((res) => {
-  //       console.log(category?._id);
-  //       const { status } = res;
-  //       if (status === 200) {
-  //         setShowModal(false);
-  //       }
-  //     });
-  // }
-
   if (!category) return null;
 
   return (
@@ -53,22 +33,9 @@ export function SingleCategory({ category }: PropType) {
         className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] "
       >
         <div className=" text-gray-700 flex items-center font-bold ">
-          {category.name}
+          {!category.parentId ? category.name : ""}
         </div>
-
-        {/* <div className="">
-          {category.subCategories?.map((subTitle: SubCategories) => (
-            <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
-              {subTitle.title}
-              <div className=" hover:bg-gray-300 rounded-[5px] ml-3">
-                <button onClick={handleDeleteSubCategory}>
-                  <ClearIcon className=" text-red-500 hover:text-red-400 " />
-                </button>
-              </div>
-            </div>
-
-          ))}
-        </div> */}
+        <SingleSubCategories category={category} key={category._id} />
 
         <div className=" flex items-center">
           <CategoryEditModal category={category} />
