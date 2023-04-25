@@ -13,13 +13,13 @@ export interface Categories {
 }
 export default function Categories() {
   const [categories, setCategories] = useState([]);
-  console.log(categories);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/categories`)
       .then((res) => setCategories(res.data));
   }, []);
-  console.log(categories);
+
   return (
     <MainLayout>
       <div className=" ">
@@ -30,7 +30,7 @@ export default function Categories() {
             <Modal />
           </div>
         </div>
-        <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] pt-[100px]">
+        <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
           <div className="">
             {categories?.map((category: Categories) => (
               <SingleCategory category={category} key={category._id} />

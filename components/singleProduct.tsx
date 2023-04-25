@@ -49,10 +49,11 @@ export function SingleProduct({ product }: PropType) {
 
         <td className="text-left">
           <div className=" pr-20 flex justify-end gap-4">
-            <ProductEditModal product={product} />
+            <ProductEditModal product={product} key={product._id} />
             <button
               onClick={handleDelete}
-              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
+              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+            >
               <DeleteIcon className=" text-red-600" />
             </button>
           </div>
