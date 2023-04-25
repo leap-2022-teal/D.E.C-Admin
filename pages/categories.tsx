@@ -9,10 +9,16 @@ export interface Categories {
   name: string;
   _id: string;
   parentId?: string;
-  subCategory?: any;
+  subCategories?: any;
 }
 export default function Categories() {
   const [categories, setCategories] = useState([]);
+  const filteredCategories = categories.filter((category: any) => {
+    if (!category.parentId) {
+      return category;
+    }
+  });
+  console.log(filteredCategories);
 
   useEffect(() => {
     axios
@@ -32,9 +38,20 @@ export default function Categories() {
         </div>
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
           <div className="">
-            {categories?.map((category: Categories) => (
-              <SingleCategory category={category} key={category._id} />
-            ))}
+            {filteredCategories?.map((category: Categories) => {
+              const subCategories = categories.filter((subCategory: any) => {
+                if (subCategory.parentId === category._id) {
+                  return subCategory;
+                }
+              });
+              return (
+                <SingleCategory
+                  subCategories={subCategories}
+                  category={category}
+                  key={category._id}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

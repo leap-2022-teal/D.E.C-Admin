@@ -8,9 +8,10 @@ import SingleSubCategories from "./singleSubCategories";
 
 interface PropType {
   category: Categories | undefined;
+  subCategories: any;
 }
 
-export function SingleCategory({ category }: PropType) {
+export function SingleCategory({ category, subCategories }: PropType) {
   console.log(category);
   function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
@@ -25,7 +26,6 @@ export function SingleCategory({ category }: PropType) {
   }
 
   if (!category) return null;
-
   return (
     <>
       <div
@@ -33,12 +33,21 @@ export function SingleCategory({ category }: PropType) {
         className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] "
       >
         <div className=" text-gray-700 flex items-center font-bold ">
-          {!category.parentId ? category.name : ""}
+          {category.name}
         </div>
-        <SingleSubCategories category={category} key={category._id} />
+
+        <div>
+          {subCategories.map((subCategory: any) => (
+            <SingleSubCategories
+              category={category}
+              subCategory={subCategory}
+              key={category._id}
+            />
+          ))}
+        </div>
 
         <div className=" flex items-center">
-          <CategoryEditModal category={category} />
+          <CategoryEditModal category={category} key={category._id} />
 
           <button
             onClick={handleDelete}
