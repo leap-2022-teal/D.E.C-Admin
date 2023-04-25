@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useRouter } from "next/navigation";
 
 export default function SingleSubCategories({ category, subCategory }: any) {
-  console.log(category);
+  const router = useRouter();
 
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
@@ -18,12 +19,13 @@ export default function SingleSubCategories({ category, subCategory }: any) {
           });
       }
     }
+    router.refresh();
   }
 
   if (!subCategory) return null;
 
   return (
-    <div className="">
+    <div itemType="button" className="">
       {/* {category?.map((subCategory: any) => ( */}
       <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
         {subCategory.name}

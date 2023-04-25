@@ -1,7 +1,7 @@
-import CategoryEditModal from "@/components/modals/categoryEditModal";
+import CategoryEditModal from "@/components/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Categories } from "@/pages/categories";
 import SingleSubCategories from "./singleSubCategories";
@@ -12,7 +12,9 @@ interface PropType {
 }
 
 export function SingleCategory({ category, subCategories }: PropType) {
-  console.log(category);
+  const router = useRouter();
+
+  console.log(subCategories);
   function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
       axios
@@ -23,6 +25,7 @@ export function SingleCategory({ category, subCategories }: PropType) {
           }
         });
     }
+    router.refresh();
   }
 
   if (!category) return null;
@@ -47,7 +50,11 @@ export function SingleCategory({ category, subCategories }: PropType) {
         </div>
 
         <div className=" flex items-center">
-          <CategoryEditModal category={category} key={category._id} />
+          <CategoryEditModal
+            subCategories={subCategories}
+            category={category}
+            key={category._id}
+          />
 
           <button
             onClick={handleDelete}

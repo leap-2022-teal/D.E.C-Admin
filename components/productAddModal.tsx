@@ -58,7 +58,8 @@ export default function ProductAddModal() {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+      >
         <AddCircleOutlineIcon className=" mr-2" />
         Бүтээгдэхүүн нэмэх
       </button>
@@ -74,7 +75,8 @@ export default function ProductAddModal() {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн нэмэх</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -100,7 +102,8 @@ export default function ProductAddModal() {
 
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны нэр
                     </label>
                     <input
@@ -113,7 +116,8 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Details
                     </label>
                     <input
@@ -126,7 +130,8 @@ export default function ProductAddModal() {
                     />
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Барааны үнэ
                     </label>
                     <input
@@ -140,7 +145,8 @@ export default function ProductAddModal() {
 
                     <label
                       htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
                       Color
                     </label>
                     <input
@@ -155,7 +161,8 @@ export default function ProductAddModal() {
                       <div>
                         <label
                           htmlFor="default-input"
-                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
                           Size
                         </label>
                         <input
@@ -174,7 +181,8 @@ export default function ProductAddModal() {
                       <div>
                         <label
                           htmlFor="default-input"
-                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
                           Stock
                         </label>
                         <input
@@ -205,7 +213,8 @@ export default function ProductAddModal() {
                             className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                             viewBox="0 0 100 101"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path
                               d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                               fill="currentColor"
@@ -228,13 +237,15 @@ export default function ProductAddModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleSubmit}>
+                    onClick={handleSubmit}
+                  >
                     хадгалах
                   </button>
                 </div>
