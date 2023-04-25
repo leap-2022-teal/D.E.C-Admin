@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
 import CategorySelector from "./categorySelector";
+import { useRouter } from "next/navigation";
 
 export default function Modal() {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [parentId, setParentId] = useState("");
-  console.log("name", name);
-  console.log("parentId", parentId);
+  const router = useRouter();
+
   function createCategory() {
     if (parentId) {
       axios
@@ -29,6 +30,7 @@ export default function Modal() {
         }
       });
     }
+    router.refresh();
   }
 
   function handleParent(e: any) {
@@ -39,7 +41,8 @@ export default function Modal() {
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
+      >
         <AddCircleOutlineIcon className="mr-2" />
         Ангилал нэмэх
       </button>
@@ -52,21 +55,19 @@ export default function Modal() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Ангилал нэмэх</h3>
-                  <button
+                  <h3> Ангилал</h3>
+                  {/* <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
-                  </button>
+                  </button> */}
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
-                    <label
-                      htmlFor="default-input"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
                     <input
                       placeholder="Ангилалаа оруулана уу?"
                       type="text"
@@ -77,22 +78,29 @@ export default function Modal() {
                     />
                   </div>
                 </div>
-                <CategorySelector
-                  value={parentId}
-                  handleSelected={handleParent}
-                />
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <h3>Дэд ангилал</h3>
+                </div>
+                <div className="relative p-6 flex-auto">
+                  <CategorySelector
+                    value={parentId}
+                    handleSelected={handleParent}
+                  />
+                </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={createCategory}>
+                    onClick={createCategory}
+                  >
                     хадгалах
                   </button>
                 </div>

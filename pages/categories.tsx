@@ -1,6 +1,6 @@
 import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
-import Modal from "@/components/modals/categoryModal";
+import Modal from "@/components/categoryModal";
 import Search from "@/components/search";
 import { SingleCategory } from "../components/singleCategory";
 import axios from "axios";
@@ -9,7 +9,6 @@ export interface Categories {
   name: string;
   _id: string;
   parentId?: string;
-  subCategories?: any;
 }
 export default function Categories() {
   const [categories, setCategories] = useState([]);
@@ -18,6 +17,7 @@ export default function Categories() {
       return category;
     }
   });
+  console.log(categories);
   console.log(filteredCategories);
 
   useEffect(() => {
@@ -25,6 +25,15 @@ export default function Categories() {
       .get(`http://localhost:8000/categories`)
       .then((res) => setCategories(res.data));
   }, []);
+
+  // function handleDelete(e: any) {
+  //   const newCat = categories.filter((category: any) => {
+  //     if (category._id !== e._id) {
+  //       return e;
+  //     }
+  //   });
+  //   setCategories(newCat);
+  // }
 
   return (
     <MainLayout>
@@ -39,16 +48,19 @@ export default function Categories() {
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
           <div className="">
             {filteredCategories?.map((category: Categories) => {
-              const subCategories = categories.filter((subCategory: any) => {
-                if (subCategory.parentId === category._id) {
-                  return subCategory;
+              const subCategories = categories.filter(
+                (subCategory: Categories) => {
+                  if (subCategory.parentId === category._id) {
+                    return subCategory;
+                  }
                 }
-              });
+              );
               return (
                 <SingleCategory
                   subCategories={subCategories}
                   category={category}
                   key={category._id}
+                  // onDelete={handleDelete}
                 />
               );
             })}

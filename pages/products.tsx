@@ -1,5 +1,5 @@
 import MainLayout from "@/components/MainLayout";
-import ProductAddModal from "@/components/modals/productAddModal";
+import ProductAddModal from "@/components/productAddModal";
 
 import Search from "@/components/search";
 import React, { useEffect, useState } from "react";
@@ -50,7 +50,8 @@ export default function Products() {
                 <th className=" w-40 text-gray-900" scope="col"></th>
                 <th
                   className=" text-left font-medium text-gray-900"
-                  scope="col">
+                  scope="col"
+                >
                   Бүтээгдэхүүн
                 </th>
                 <th className="text-left font-medium text-gray-900" scope="col">
@@ -58,17 +59,20 @@ export default function Products() {
                 </th>
                 <th
                   className=" w-40 text-left font-medium text-gray-900"
-                  scope="col">
+                  scope="col"
+                >
                   size
                 </th>
                 <th
                   className="  text-left font-medium text-gray-900"
-                  scope="col">
+                  scope="col"
+                >
                   Нөөц
                 </th>
                 <th
                   className="text-left font-medium text-gray-900"
-                  scope="col"></th>
+                  scope="col"
+                ></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">

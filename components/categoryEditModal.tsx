@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import ShareIcon from "@mui/icons-material/Share";
+import { useRouter } from "next/navigation";
 import { Categories } from "@/pages/categories";
 
 interface PropType {
   category: Categories;
+  subCategories: any;
 }
 
-export default function CategoryEditModal({ category }: PropType) {
+export default function CategoryEditModal({
+  category,
+  subCategories,
+}: PropType) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
+  const [subName, setSubName] = useState<any>([]);
 
+  const router = useRouter();
+  // console.log(category);
   useEffect(() => {
     setName(category.name);
   }, []);
-
+  console.log(subCategories);
   function handleUpdate() {
     axios
-      .put(`http://localhost:8000/categories/${category._id}`, {
-        name: name,
-      })
+      .put(
+        `http://localhost:8000/categories/${category._id && subCategories._id}`,
+        {
+          name: name,
+        }
+      )
       .then((res) => {
         const { status } = res;
         if (status === 200) {
@@ -28,6 +38,7 @@ export default function CategoryEditModal({ category }: PropType) {
           setShowModal(false);
         }
       });
+    router.refresh();
   }
 
   return (
@@ -71,40 +82,21 @@ export default function CategoryEditModal({ category }: PropType) {
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
-                  {/* <span className=" font-bold ">Дэд ангилал</span>
-                  {subCategories?.map(
-                    (subCategory: SubCategories, index: number) => {
-                      return (
-                        <>
-                          <div className="mb-6 mt-4">
-                            <input
-                              placeholder=""
-                              type="text"
-                              id=""
-                              onChange={(e) =>
-                                handleSubCategory(e.target.value, index)
-                              }
-                              value={subCategory.title}
-                              className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            />
-                          </div>
-                        </>
-                      );
-                    }
-                  )} */}
-
-                  {/* <button
-                    onClick={() =>
-                      setSubCategories([
-                        ...subCategories,
-                        { title: "", _id: "" },
-                      ])
-                    }
-                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
-                    <ShareIcon className="mr-2" />
-                    Дэд Ангилал нэмэх
-                  </button> */}
+                  <span className=" font-bold ">Дэд ангилал</span>
+                  <div className="mb-6 mt-4">
+                    {subCategories.map((subCategory: any) => (
+                      <input
+                        placeholder=""
+                        type="text"
+                        id=""
+                        onChange={(e) => setSubName(e.target.value)}
+                        value={subCategory.name}
+                        className=" mb-4   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      />
+                    ))}
+                  </div>
                 </div>
+
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button

@@ -1,6 +1,6 @@
 import MainLayout from "@/components/MainLayout";
-import AdminAddModal from "@/components/modals/adminAddModal";
-import SingleAdmins from "@/components/modals/singleAdmins";
+import AdminAddModal from "@/components/adminAddModal";
+import SingleAdmins from "@/components/singleAdmins";
 import Search from "@/components/search";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
