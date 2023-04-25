@@ -16,6 +16,7 @@ export interface Product {
   price: number;
   color: string;
   categoryId: string;
+  subCategoryId: string;
   sizes: Stock[];
   image: {
     path: string;
@@ -66,9 +67,6 @@ export default function Products() {
                   scope="col">
                   Нөөц
                 </th>
-                <th
-                  className="text-left font-medium text-gray-900"
-                  scope="col"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">

@@ -2,6 +2,7 @@ import axios from "axios";
 import ProductEditModal from "./modals/productEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Product } from "@/pages/products";
+import { Category } from "@mui/icons-material";
 interface Size {
   size: number;
   stock: number;
@@ -52,8 +53,7 @@ export function SingleProduct({ product }: PropType) {
             <ProductEditModal product={product} key={product._id} />
             <button
               onClick={handleDelete}
-              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
-            >
+              className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
               <DeleteIcon className=" text-red-600" />
             </button>
           </div>
