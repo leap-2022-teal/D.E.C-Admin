@@ -11,18 +11,15 @@ interface PropType {
 export default function CategoryEditModal({ category }: PropType) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
-  // const [subCategories, setSubCategories] = useState<SubCategories[]>([]);
 
   useEffect(() => {
     setName(category.name);
-    // setSubCategories(category.subCategories);
   }, []);
 
   function handleUpdate() {
     axios
       .put(`http://localhost:8000/categories/${category._id}`, {
         name: name,
-        // subCategories: subCategories,
       })
       .then((res) => {
         const { status } = res;
@@ -33,18 +30,12 @@ export default function CategoryEditModal({ category }: PropType) {
       });
   }
 
-  // function handleSubCategory(e: string, index: number) {
-  //   console.log(index);
-  //   const newState = [...subCategories];
-  //   newState[index] = { title: e, _id: e };
-  //   setSubCategories(newState);
-  // }
-
   return (
     <>
       <button
         onClick={() => setShowModal(true)}
-        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
+        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
+      >
         <EditIcon className=" text-gray-700" />
       </button>
 
@@ -59,7 +50,8 @@ export default function CategoryEditModal({ category }: PropType) {
                   <h3 className="text-3xl font-semibold">Ангилал засах</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -118,13 +110,15 @@ export default function CategoryEditModal({ category }: PropType) {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleUpdate}>
+                    onClick={handleUpdate}
+                  >
                     хадгалах
                   </button>
                 </div>
