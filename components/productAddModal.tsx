@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CategorySelector from "./categorySelector";
 import { useCreateProduct } from "./createProducts";
+import SubCategorySelector from "../subCategorySelector";
 
 interface Sizes {
   size: number;
@@ -18,6 +19,7 @@ export default function ProductAddModal() {
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
+  const [subCategoryId, setSubCategoryId] = useState();
   const createNewProduct = useCreateProduct();
 
   async function handleFileUpload(event: any) {
@@ -47,6 +49,7 @@ export default function ProductAddModal() {
       categoryId,
       sizes,
       image,
+      subCategoryId,
     });
     useEffect;
   }
@@ -86,6 +89,17 @@ export default function ProductAddModal() {
                       value={""}
                       handleSelected={setCategoryId}
                     />
+                    {/* {categoryId !== subCategoryId ? null : (
+                      <SubCategorySelector
+                        value={""}
+                        handleSelected={setSubCategoryId}
+                      />
+                    )} */}
+                    <SubCategorySelector
+                      value={categoryId}
+                      handleSelected={setSubCategoryId}
+                    />
+
                     <label
                       htmlFor="default-input"
                       className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"

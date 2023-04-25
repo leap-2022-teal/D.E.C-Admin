@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
 import { Product } from "@/pages/products";
+import SubCategorySelector from "../subCategorySelector";
+import CategorySelector from "./categorySelector";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 interface Sizes {
   size: number;
   stock: number;
@@ -17,15 +21,23 @@ export default function ProductEditModal({ product }: PropType) {
   const [color, setColor] = useState<string>();
   const [sizes, setSizes] = useState<Sizes[]>([{ size: 0, stock: 0 }]);
   const [showModal, setShowModal] = React.useState(false);
-  if (product) {
-    useEffect(() => {
+  const [subCategoryId, setSubCategoryId] = useState<string>();
+  const [categoryId, setCategoryId] = useState<string>();
+  const removeSecond = (e: any) => {
+    setSizes((current) => current.filter((size) => size.size !== e));
+  };
+
+  useEffect(() => {
+    if (product) {
       setName(product.name);
       setColor(product.color);
       setDetails(product.details);
       setSizes(product.sizes);
       setPrice(product.price);
-    }, []);
-  }
+      setCategoryId(product.categoryId);
+      setSubCategoryId(product.subCategoryId);
+    }
+  }, [product]);
 
   function handleUpdate() {
     axios
@@ -35,6 +47,8 @@ export default function ProductEditModal({ product }: PropType) {
         color: color,
         price: price,
         details: details,
+        categoryId: categoryId,
+        subCategoryId: subCategoryId,
       })
       .then((res) => {
         const { status } = res;
@@ -84,6 +98,17 @@ export default function ProductEditModal({ product }: PropType) {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
+                  <CategorySelector value={""} handleSelected={setCategoryId} />
+                  {/* {categoryId !== subCategoryId ? null : (
+                      <SubCategorySelector
+                        value={""}
+                        handleSelected={setSubCategoryId}
+                      />
+                    )} */}
+                  <SubCategorySelector
+                    value={categoryId}
+                    handleSelected={setSubCategoryId}
+                  />
                   <label
                     htmlFor="default-input"
                     className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -140,7 +165,7 @@ export default function ProductEditModal({ product }: PropType) {
 
                   {sizes.map((sizes: Sizes, index: number) => {
                     return (
-                      <div className="grid grid-cols-2 gap-3 mb-4">
+                      <div className="grid grid-cols-3 gap-3 mb-4">
                         <div>
                           <label
                             htmlFor="default-input"
@@ -158,7 +183,7 @@ export default function ProductEditModal({ product }: PropType) {
                             className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
                         </div>
-                        <div>
+                        <div className="">
                           <label
                             htmlFor="default-input"
                             className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -175,6 +200,13 @@ export default function ProductEditModal({ product }: PropType) {
                             className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           />
                         </div>
+                        <div className="mt-10">
+                          <button
+                            className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+                            onClick={() => removeSecond(sizes.size)}>
+                            <DeleteIcon className=" text-red-600" />
+                          </button>
+                        </div>
                       </div>
                     );
                   })}
@@ -183,6 +215,7 @@ export default function ProductEditModal({ product }: PropType) {
                     className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
                     size nemeh
                   </button>
+
                   {/*footer*/}
                   <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                     <button

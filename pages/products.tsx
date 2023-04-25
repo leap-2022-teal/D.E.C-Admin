@@ -16,6 +16,7 @@ export interface Product {
   price: number;
   color: string;
   categoryId: string;
+  subCategoryId: string;
   sizes: Stock[];
   image: {
     path: string;
@@ -69,6 +70,7 @@ export default function Products() {
                 >
                   Нөөц
                 </th>
+
                 <th
                   className="text-left font-medium text-gray-900"
                   scope="col"
