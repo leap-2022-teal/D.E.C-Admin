@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import axios from "axios";
+import React, { useState } from "react";
+import ShareIcon from "@mui/icons-material/Share";
 import CategorySelector from "./categorySelector";
+import axios from "axios";
 
-export default function Modal({ handleReload }: any) {
+interface PropType {
+  handleReload: () => void;
+}
+
+export default function SubCategoryAdd({ handleReload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [parentId, setParentId] = useState("");
 
-  function createCategory() {
+  function createSubCategory() {
     if (parentId) {
       axios
         .post(`http://localhost:8000/categories`, { name, parentId })
@@ -17,16 +21,9 @@ export default function Modal({ handleReload }: any) {
           if (status === 200) {
             setShowModal(false);
             setName("");
+            handleReload();
           }
         });
-    } else {
-      axios.post(`http://localhost:8000/categories`, { name }).then((res) => {
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-          setName("");
-        }
-      });
     }
   }
 
@@ -39,22 +36,24 @@ export default function Modal({ handleReload }: any) {
       <button
         onClick={() => setShowModal(true)}
         className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      >
-        <AddCircleOutlineIcon className="mr-2" />
-        Ангилал нэмэх
-      </button>
-
+      />
+      <ShareIcon className="mr-2" />
+      Дэд ангилал нэмэх
       {showModal ? (
-        <>
+        <div>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3> Ангилал</h3>
+                  <span className=" font-bold">Дэд ангилал нэмэх</span>
                 </div>
                 {/*body*/}
+                <CategorySelector
+                  value={parentId}
+                  handleSelected={handleParent}
+                />
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
                     <input
@@ -80,7 +79,7 @@ export default function Modal({ handleReload }: any) {
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={createCategory}
+                    onClick={createSubCategory}
                   >
                     хадгалах
                   </button>
@@ -89,7 +88,7 @@ export default function Modal({ handleReload }: any) {
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </>
+        </div>
       ) : null}
     </>
   );
