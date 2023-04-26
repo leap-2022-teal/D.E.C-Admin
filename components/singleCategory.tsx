@@ -1,7 +1,6 @@
 import CategoryEditModal from "@/components/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 import { Categories } from "@/pages/categories";
 import SingleSubCategories from "./singleSubCategories";
@@ -9,12 +8,14 @@ import SingleSubCategories from "./singleSubCategories";
 interface PropType {
   category: Categories | undefined;
   subCategories: any;
+  handleReload: () => void;
 }
 
-export function SingleCategory({ category, subCategories }: PropType) {
-  const router = useRouter();
-
-  console.log(subCategories);
+export function SingleCategory({
+  category,
+  subCategories,
+  handleReload,
+}: PropType) {
   function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
       axios
@@ -22,10 +23,10 @@ export function SingleCategory({ category, subCategories }: PropType) {
         .then((res) => {
           const { status } = res;
           if (status === 200) {
+            handleReload();
           }
         });
     }
-    router.refresh();
   }
 
   if (!category) return null;
@@ -42,6 +43,7 @@ export function SingleCategory({ category, subCategories }: PropType) {
         <div>
           {subCategories.map((subCategory: any) => (
             <SingleSubCategories
+              handleReload={handleReload}
               category={category}
               subCategory={subCategory}
               key={category._id}
@@ -51,6 +53,7 @@ export function SingleCategory({ category, subCategories }: PropType) {
 
         <div className=" flex items-center">
           <CategoryEditModal
+            handleReload={handleReload}
             subCategories={subCategories}
             category={category}
             key={category._id}

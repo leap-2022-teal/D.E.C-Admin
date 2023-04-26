@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
 import { Product } from "@/pages/products";
-import SubCategorySelector from "../subCategorySelector";
+import SubCategorySelector from "./subCategorySelector";
 import CategorySelector from "./categorySelector";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -75,7 +75,8 @@ export default function ProductEditModal({ product }: PropType) {
       <div>
         <button
           onClick={() => setShowModal(true)}
-          className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
+          className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+        >
           <CreateIcon className=" text-gray-600 " />
         </button>
       </div>
@@ -90,7 +91,8 @@ export default function ProductEditModal({ product }: PropType) {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн засах</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                       ×
                     </span>
@@ -111,7 +113,8 @@ export default function ProductEditModal({ product }: PropType) {
                   />
                   <label
                     htmlFor="default-input"
-                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Барааны нэр
                   </label>
                   <input
@@ -124,7 +127,8 @@ export default function ProductEditModal({ product }: PropType) {
                   />
                   <label
                     htmlFor="default-input"
-                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Details
                   </label>
                   <input
@@ -137,7 +141,8 @@ export default function ProductEditModal({ product }: PropType) {
                   />
                   <label
                     htmlFor="default-input"
-                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Барааны үнэ
                   </label>
                   <input
@@ -151,7 +156,8 @@ export default function ProductEditModal({ product }: PropType) {
 
                   <label
                     htmlFor="default-input"
-                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Color
                   </label>
                   <input
@@ -169,7 +175,8 @@ export default function ProductEditModal({ product }: PropType) {
                         <div>
                           <label
                             htmlFor="default-input"
-                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
                             Size
                           </label>
                           <input
@@ -186,7 +193,8 @@ export default function ProductEditModal({ product }: PropType) {
                         <div className="">
                           <label
                             htmlFor="default-input"
-                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
                             Stock
                           </label>
                           <input
@@ -203,7 +211,8 @@ export default function ProductEditModal({ product }: PropType) {
                         <div className="mt-10">
                           <button
                             className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
-                            onClick={() => removeSecond(sizes.size)}>
+                            onClick={() => removeSecond(sizes.size)}
+                          >
                             <DeleteIcon className=" text-red-600" />
                           </button>
                         </div>
@@ -212,7 +221,8 @@ export default function ProductEditModal({ product }: PropType) {
                   })}
                   <button
                     onClick={() => setSizes([...sizes, { size: 0, stock: 0 }])}
-                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
+                  >
                     size nemeh
                   </button>
 
@@ -221,13 +231,15 @@ export default function ProductEditModal({ product }: PropType) {
                     <button
                       className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"
-                      onClick={() => setShowModal(false)}>
+                      onClick={() => setShowModal(false)}
+                    >
                       хаах
                     </button>
                     <button
                       className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                       type="button"
-                      onClick={handleUpdate}>
+                      onClick={handleUpdate}
+                    >
                       хадгалах
                     </button>
                   </div>

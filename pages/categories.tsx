@@ -4,21 +4,24 @@ import Modal from "@/components/categoryModal";
 import Search from "@/components/search";
 import { SingleCategory } from "../components/singleCategory";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import SubCategoryAdd from "@/components/SubCategoryAdd";
 
 export interface Categories {
   name: string;
   _id: string;
   parentId?: string;
+  handleReload: () => void;
 }
 export default function Categories() {
+  const router = useRouter();
+
   const [categories, setCategories] = useState([]);
   const filteredCategories = categories.filter((category: any) => {
     if (!category.parentId) {
       return category;
     }
   });
-  console.log(categories);
-  console.log(filteredCategories);
 
   useEffect(() => {
     axios
@@ -26,14 +29,9 @@ export default function Categories() {
       .then((res) => setCategories(res.data));
   }, []);
 
-  // function handleDelete(e: any) {
-  //   const newCat = categories.filter((category: any) => {
-  //     if (category._id !== e._id) {
-  //       return e;
-  //     }
-  //   });
-  //   setCategories(newCat);
-  // }
+  function handleReload() {
+    router.refresh();
+  }
 
   return (
     <MainLayout>
@@ -42,7 +40,10 @@ export default function Categories() {
           <div className=" flex justify-between border-solid pb-4 border-b-2 ">
             <h1 className=" font-bold">Ангилал</h1>
             <Search />
-            <Modal />
+            <div className="w-[20%] flex justify-between">
+              <Modal handleReload={handleReload} />
+              <SubCategoryAdd handleReload={handleReload} />
+            </div>
           </div>
         </div>
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
@@ -57,6 +58,7 @@ export default function Categories() {
               );
               return (
                 <SingleCategory
+                  handleReload={handleReload}
                   subCategories={subCategories}
                   category={category}
                   key={category._id}
