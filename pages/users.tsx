@@ -1,7 +1,7 @@
 import MainLayout from "@/components/MainLayout";
 import AdminAddModal from "@/components/adminAddModal";
-import SingleAdmins from "@/components/singleAdmins";
-import Search from "@/components/search";
+import SingleAdmins from "@/components/SingleAdmins";
+import Search from "@/components/Search";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -37,10 +37,7 @@ export default function Admins() {
               <th scope="col" className="px-6 py-4 font-bold text-gray-900">
                 E-mail
               </th>
-              <th
-                scope="col"
-                className="px-6 py-4 font-medium text-gray-900"
-              ></th>
+              <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">

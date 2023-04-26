@@ -9,14 +9,12 @@ export default function SingleSubCategories({ category, subCategory }: any) {
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
       if (window.confirm("Aнгилал устгах уу ?")) {
-        axios
-          .delete(`http://localhost:8000/categories/${subCategory?._id} `)
-          .then((res) => {
-            const { status } = res;
-            if (status === 200) {
-              console.log("deleted");
-            }
-          });
+        axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
+          const { status } = res;
+          if (status === 200) {
+            console.log("deleted");
+          }
+        });
       }
     }
     router.refresh();

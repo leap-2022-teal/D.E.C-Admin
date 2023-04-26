@@ -14,7 +14,7 @@ export default function SubCategorySelector({ handleSelected, value }: Props) {
   const [subCategories, setSubCategories] = useState([]);
   console.log(value);
   useEffect(() => {
-    fetch(`http://localhost:8000/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
       .then((res) => res.json())
       .then((data) => {
         const filteredSub = data.filter((sub: any) => {
@@ -33,17 +33,12 @@ export default function SubCategorySelector({ handleSelected, value }: Props) {
 
   return (
     <>
-      <select
-        onChange={handleChange}
-        className="mb-4 border-2 rounded-[5px] border-gray-300">
+      <select onChange={handleChange} className="mb-4 border-2 rounded-[5px] border-gray-300">
         <option value="">Дэд aнгилалаа сонгоно уу?</option>
         {subCategories.map((subCategory: Categories) => {
           if (subCategory.parentId) {
             return (
-              <option
-                key={subCategory._id}
-                value={subCategory._id}
-                label={subCategory.name}>
+              <option key={subCategory._id} value={subCategory._id} label={subCategory.name}>
                 {subCategory.name}
               </option>
             );

@@ -8,7 +8,7 @@ export default function SingleSubCategory({ categoryId, subCategory }: any) {
     }
     console.log("id", categoryId, " subCat:", subCategory._id);
     axios
-      .put(`http://localhost:8000/categories/${categoryId}`, {
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${categoryId}`, {
         deletedSubCategory: subCategory._id,
       })
       .then((res) => {

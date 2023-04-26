@@ -1,14 +1,11 @@
 import React from "react";
 
-export default function Search() {
+export default function Search(value: any) {
   return (
     <>
       <div className="flex justify-between ">
         <form>
-          <label
-            htmlFor="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
+          <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Хайх
           </label>
 
