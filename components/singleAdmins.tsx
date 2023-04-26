@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import AdminEditModal from "./adminEditModal";
+import AdminEditModal from "./AdminEditModal";
 
 export default function SingleAdmins({ admin }: any) {
   function handleDelete() {

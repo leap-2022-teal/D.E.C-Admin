@@ -2,8 +2,18 @@ import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
 import { Product } from "@/pages/products";
+<<<<<<< HEAD
 import SubCategorySelector from "./SubCategorySelector";
 import CategorySelector from "./CategorySelector";
+=======
+<<<<<<< HEAD
+import SubCategorySelector from "./subCategorySelector";
+import CategorySelector from "./categorySelector";
+=======
+import SubCategorySelector from "./SubCategorySelector";
+import CategorySelector from "./CategorySelector";
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Sizes {
@@ -75,7 +85,18 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
   return (
     <>
       <div>
+<<<<<<< HEAD
         <button onClick={() => setShowModal(true)} className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
+=======
+<<<<<<< HEAD
+        <button
+          onClick={() => setShowModal(true)}
+          className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+        >
+=======
+        <button onClick={() => setShowModal(true)} className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
           <CreateIcon className=" text-gray-600 " />
         </button>
       </div>
@@ -92,7 +113,17 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
+<<<<<<< HEAD
                     <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+=======
+<<<<<<< HEAD
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                      ×
+                    </span>
+=======
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
                   </button>
                 </div>
                 {/*body*/}
@@ -104,8 +135,24 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                         handleSelected={setSubCategoryId}
                       />
                     )} */}
+<<<<<<< HEAD
                   <SubCategorySelector value={categoryId} handleSelected={setSubCategoryId} />
                   <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+=======
+<<<<<<< HEAD
+                  <SubCategorySelector
+                    value={categoryId}
+                    handleSelected={setSubCategoryId}
+                  />
+                  <label
+                    htmlFor="default-input"
+                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+=======
+                  <SubCategorySelector value={categoryId} handleSelected={setSubCategoryId} />
+                  <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
                     Барааны нэр
                   </label>
                   <input
@@ -116,9 +163,18 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     onChange={(e) => setName(e.target.value)}
                     className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
+<<<<<<< HEAD
                   <label
                     htmlFor="default-input"
+<<<<<<< HEAD
                     className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+=======
+                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+=======
+                  <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
                     Details
                   </label>
                   <input
@@ -129,9 +185,18 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     onChange={(e) => setDetails(e.target.value)}
                     className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
+<<<<<<< HEAD
                   <label
                     htmlFor="default-input"
+<<<<<<< HEAD
                     className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+=======
+                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+=======
+                  <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
                     Барааны үнэ
                   </label>
                   <input
@@ -143,7 +208,18 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
 
+<<<<<<< HEAD
                   <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+=======
+<<<<<<< HEAD
+                  <label
+                    htmlFor="default-input"
+                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+=======
+                  <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
+>>>>>>> 5c8456b (color and products edits)
                     Color
                   </label>
                   <input
@@ -159,10 +235,14 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     return (
                       <div className="grid grid-cols-3 gap-3 mb-4">
                         <div>
+<<<<<<< HEAD
                           <label
                             htmlFor="default-input"
                             className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
+=======
+                          <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
                             Size
                           </label>
                           <input
@@ -175,10 +255,14 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                           />
                         </div>
                         <div className="">
+<<<<<<< HEAD
                           <label
                             htmlFor="default-input"
                             className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
                           >
+=======
+                          <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+>>>>>>> a1beb0d (color and products edits)
                             Stock
                           </label>
                           <input
@@ -191,10 +275,14 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                           />
                         </div>
                         <div className="mt-10">
+<<<<<<< HEAD
                           <button
                             className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
                             onClick={() => removeSecond(sizes.size)}
                           >
+=======
+                          <button className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 " onClick={() => removeSecond(sizes.size)}>
+>>>>>>> a1beb0d (color and products edits)
                             <DeleteIcon className=" text-red-600" />
                           </button>
                         </div>

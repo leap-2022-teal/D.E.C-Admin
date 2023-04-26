@@ -1,5 +1,9 @@
 import MainLayout from "@/components/MainLayout";
+<<<<<<< HEAD
 import AdminAddModal from "@/components/adminAddModal";
+=======
+import AdminAddModal from "@/components/AdminAddModal";
+>>>>>>> 5c8456b (color and products edits)
 import SingleAdmins from "@/components/SingleAdmins";
 import Search from "@/components/Search";
 import axios from "axios";
