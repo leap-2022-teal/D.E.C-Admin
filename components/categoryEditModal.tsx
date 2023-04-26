@@ -9,20 +9,7 @@ interface PropType {
   subCategories: any;
   handleReload: () => void;
 }
-
-<<<<<<< HEAD
-export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
-=======
-<<<<<<< HEAD
-export default function CategoryEditModal({
-  category,
-  subCategories,
-  handleReload,
-}: PropType) {
-=======
 export default function CategoryEditModal({ category, subCategories }: PropType) {
->>>>>>> a1beb0d (color and products edits)
->>>>>>> 5c8456b (color and products edits)
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
   const [subName, setSubName] = useState<any>("");
@@ -36,15 +23,7 @@ export default function CategoryEditModal({ category, subCategories }: PropType)
   console.log(name);
   function handleUpdate() {
     axios
-<<<<<<< HEAD
-      .put(`http://localhost:8000/categories/${category._id && subCategories._id}`, {
-=======
-<<<<<<< HEAD
-      .put(`http://localhost:8000/categories/${category._id}`, {
-=======
       .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id && subCategories._id}`, {
->>>>>>> a1beb0d (color and products edits)
->>>>>>> 5c8456b (color and products edits)
         name: name,
       })
       .then((res) => {
@@ -53,7 +32,6 @@ export default function CategoryEditModal({ category, subCategories }: PropType)
           setName("");
           setSubName("");
           setShowModal(false);
-          handleReload();
         }
       });
   }

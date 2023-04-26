@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
-<<<<<<< HEAD
-import CategorySelector from "./CategorySelector";
-=======
-<<<<<<< HEAD
-import CategorySelector from "./categorySelector";
-=======
+
 import CategorySelector from "./CategorySelector";
 import { useRouter } from "next/navigation";
->>>>>>> a1beb0d (color and products edits)
->>>>>>> 5c8456b (color and products edits)
-
 export default function Modal({ handleReload }: any) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -71,22 +63,6 @@ export default function Modal({ handleReload }: any) {
                     />
                   </div>
                 </div>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 5c8456b (color and products edits)
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3>Дэд ангилал</h3>
-                </div>
-                <div className="relative p-6 flex-auto">
-                  <CategorySelector value={parentId} handleSelected={handleParent} />
-                </div>
-<<<<<<< HEAD
-=======
->>>>>>> a1beb0d (color and products edits)
->>>>>>> 5c8456b (color and products edits)
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
