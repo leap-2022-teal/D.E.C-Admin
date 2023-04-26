@@ -6,32 +6,12 @@ export default function SingleSubCategories({ category, subCategory, handleReloa
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
       if (window.confirm("Aнгилал устгах уу ?")) {
-<<<<<<< HEAD
         axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
           const { status } = res;
           if (status === 200) {
             handleReload();
           }
         });
-=======
-<<<<<<< HEAD
-        axios
-          .delete(`http://localhost:8000/categories/${subCategory?._id} `)
-          .then((res) => {
-            const { status } = res;
-            if (status === 200) {
-              handleReload();
-            }
-          });
-=======
-        axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
-          const { status } = res;
-          if (status === 200) {
-            console.log("deleted");
-          }
-        });
->>>>>>> a1beb0d (color and products edits)
->>>>>>> 5c8456b (color and products edits)
       }
     }
   }

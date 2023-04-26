@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
 
-import CategorySelector from "./CategorySelector";
+import CategorySelector from "./categorySelector";
 import { useRouter } from "next/navigation";
 export default function Modal({ handleReload }: any) {
   const [showModal, setShowModal] = useState(false);

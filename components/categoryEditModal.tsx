@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { Categories } from "@/pages/categories";
 
 interface PropType {
@@ -9,13 +8,12 @@ interface PropType {
   subCategories: any;
   handleReload: () => void;
 }
-export default function CategoryEditModal({ category, subCategories }: PropType) {
+
+export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
   const [subName, setSubName] = useState<any>("");
 
-  const router = useRouter();
-  // console.log(category);
   useEffect(() => {
     setName(category.name);
     setSubName(subCategories.name);
@@ -32,6 +30,7 @@ export default function CategoryEditModal({ category, subCategories }: PropType)
           setName("");
           setSubName("");
           setShowModal(false);
+          handleReload();
         }
       });
   }
