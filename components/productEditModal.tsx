@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
 import { Product } from "@/pages/products";
-import SubCategorySelector from "./subCategorySelector";
-import CategorySelector from "./categorySelector";
+import SubCategorySelector from "./SubCategorySelector";
+import CategorySelector from "./CategorySelector";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Sizes {
