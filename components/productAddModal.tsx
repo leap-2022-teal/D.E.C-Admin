@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import CategorySelector from "./categorySelector";
-import { useCreateProduct } from "./createProducts";
-import SubCategorySelector from "./subCategorySelector";
+import CategorySelector from "./CategorySelector";
+import { useCreateProduct } from "./CreateProducts";
+import SubCategorySelector from "./SubCategorySelector";
+import Color from "./ColorSelector";
 
 interface Sizes {
   size: number;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
-import CategorySelector from "./categorySelector";
+import CategorySelector from "./CategorySelector";
 import axios from "axios";
 
 interface PropType {
@@ -14,16 +14,14 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
 
   function createSubCategory() {
     if (parentId) {
-      axios
-        .post(`http://localhost:8000/categories`, { name, parentId })
-        .then((res) => {
-          const { status } = res;
-          if (status === 200) {
-            setShowModal(false);
-            setName("");
-            handleReload();
-          }
-        });
+      axios.post(`http://localhost:8000/categories`, { name, parentId }).then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          setShowModal(false);
+          setName("");
+          handleReload();
+        }
+      });
     }
   }
 
@@ -33,10 +31,7 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      />
+      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" />
       <ShareIcon className="mr-2" />
       Дэд ангилал нэмэх
       {showModal ? (
@@ -50,10 +45,7 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
                   <span className=" font-bold">Дэд ангилал нэмэх</span>
                 </div>
                 {/*body*/}
-                <CategorySelector
-                  value={parentId}
-                  handleSelected={handleParent}
-                />
+                <CategorySelector value={parentId} handleSelected={handleParent} />
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
                     <input
