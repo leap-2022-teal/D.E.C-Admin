@@ -2,22 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
 
-export default function SingleSubCategories({
-  category,
-  subCategory,
-  handleReload,
-}: any) {
+export default function SingleSubCategories({ category, subCategory, handleReload }: any) {
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
       if (window.confirm("Aнгилал устгах уу ?")) {
-        axios
-          .delete(`http://localhost:8000/categories/${subCategory?._id} `)
-          .then((res) => {
-            const { status } = res;
-            if (status === 200) {
-              handleReload();
-            }
-          });
+        axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
+          const { status } = res;
+          if (status === 200) {
+            handleReload();
+          }
+        });
       }
     }
   }

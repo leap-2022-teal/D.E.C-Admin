@@ -1,15 +1,8 @@
 import axios from "axios";
 
-export async function axioser(path: string, reqType: string) {
+export async function axioser(path: string) {
   const req: any = await axios(`${process.env.NEXT_PUBLIC_API_URL}/${path}`);
-
-  const data: any = await req.json();
-  return data;
+return req
 }
 
-export async function postAxios(path: string, reqType: string) {
-  const req: any = await axios(`${process.env.NEXT_PUBLIC_API_URL}/${path}`);
-
-  const data: any = await req.json();
-  return data;
 }

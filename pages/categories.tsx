@@ -1,8 +1,8 @@
 import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
 import Modal from "@/components/categoryModal";
-import Search from "@/components/search";
-import { SingleCategory } from "../components/singleCategory";
+import Search from "@/components/Search";
+import { SingleCategory } from "../components/SingleCategory";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import SubCategoryAdd from "@/components/SubCategoryAdd";
@@ -24,9 +24,7 @@ export default function Categories() {
   });
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/categories`)
-      .then((res) => setCategories(res.data));
+    axios.get(`http://localhost:8000/categories`).then((res) => setCategories(res.data));
   }, []);
 
   function handleReload() {
@@ -49,13 +47,11 @@ export default function Categories() {
         <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
           <div className="">
             {filteredCategories?.map((category: Categories) => {
-              const subCategories = categories.filter(
-                (subCategory: Categories) => {
-                  if (subCategory.parentId === category._id) {
-                    return subCategory;
-                  }
+              const subCategories = categories.filter((subCategory: Categories) => {
+                if (subCategory.parentId === category._id) {
+                  return subCategory;
                 }
-              );
+              });
               return (
                 <SingleCategory
                   handleReload={handleReload}

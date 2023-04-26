@@ -11,7 +11,7 @@ export default function AdminAddModal() {
 
   function createUsers() {
     axios
-      .post(`http://localhost:8000/users`, {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
         userName: userName,
         email: email,
         role: role,
@@ -32,10 +32,7 @@ export default function AdminAddModal() {
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      >
+      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
         <GroupAddIcon className="mr-2" />
         Админ нэмэх
       </button>
@@ -53,9 +50,7 @@ export default function AdminAddModal() {
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                   </button>
                 </div>
                 {/*body*/}
@@ -84,11 +79,7 @@ export default function AdminAddModal() {
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 
-                    <select
-                      onChange={(e) => setRole(e.target.value)}
-                      className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300"
-                      id=""
-                    >
+                    <select onChange={(e) => setRole(e.target.value)} className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300" id="">
                       <option value="">Role</option>
                       <option>Admin</option>
                       <option>Moderator</option>

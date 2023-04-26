@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
-import CategorySelector from "./categorySelector";
 
+import CategorySelector from "./categorySelector";
+import { useRouter } from "next/navigation";
 export default function Modal({ handleReload }: any) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -10,17 +11,15 @@ export default function Modal({ handleReload }: any) {
 
   function createCategory() {
     if (parentId) {
-      axios
-        .post(`http://localhost:8000/categories`, { name, parentId })
-        .then((res) => {
-          const { status } = res;
-          if (status === 200) {
-            setShowModal(false);
-            setName("");
-          }
-        });
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name, parentId }).then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          setShowModal(false);
+          setName("");
+        }
+      });
     } else {
-      axios.post(`http://localhost:8000/categories`, { name }).then((res) => {
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name }).then((res) => {
         const { status } = res;
         if (status === 200) {
           setShowModal(false);
@@ -36,10 +35,7 @@ export default function Modal({ handleReload }: any) {
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      >
+      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
         <AddCircleOutlineIcon className="mr-2" />
         Ангилал нэмэх
       </button>
@@ -67,7 +63,6 @@ export default function Modal({ handleReload }: any) {
                     />
                   </div>
                 </div>
-
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
