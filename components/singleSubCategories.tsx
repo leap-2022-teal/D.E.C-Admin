@@ -1,23 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useRouter } from "next/navigation";
 
-export default function SingleSubCategories({ category, subCategory }: any) {
-  const router = useRouter();
-
+export default function SingleSubCategories({ category, subCategory, handleReload }: any) {
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
       if (window.confirm("Aнгилал устгах уу ?")) {
         axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
           const { status } = res;
           if (status === 200) {
-            console.log("deleted");
+            handleReload();
           }
         });
       }
     }
-    router.refresh();
   }
 
   if (!subCategory) return null;

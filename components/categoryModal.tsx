@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import axios from "axios";
 import CategorySelector from "./CategorySelector";
-import { useRouter } from "next/navigation";
 
-export default function Modal() {
+export default function Modal({ handleReload }: any) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [parentId, setParentId] = useState("");
-  const router = useRouter();
 
   function createCategory() {
     if (parentId) {
@@ -28,7 +26,6 @@ export default function Modal() {
         }
       });
     }
-    router.refresh();
   }
 
   function handleParent(e: any) {
@@ -51,14 +48,6 @@ export default function Modal() {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3> Ангилал</h3>
-                  {/* <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button> */}
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
@@ -73,6 +62,7 @@ export default function Modal() {
                     />
                   </div>
                 </div>
+
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3>Дэд ангилал</h3>
                 </div>

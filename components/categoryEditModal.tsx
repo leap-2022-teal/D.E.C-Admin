@@ -7,32 +7,35 @@ import { Categories } from "@/pages/categories";
 interface PropType {
   category: Categories;
   subCategories: any;
+  handleReload: () => void;
 }
 
-export default function CategoryEditModal({ category, subCategories }: PropType) {
+export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
   const [showModal, setShowModal] = React.useState(false);
   const [name, setName] = useState<any>([]);
-  const [subName, setSubName] = useState<any>([]);
+  const [subName, setSubName] = useState<any>("");
 
   const router = useRouter();
   // console.log(category);
   useEffect(() => {
     setName(category.name);
+    setSubName(subCategories.name);
   }, []);
-  console.log(subCategories);
+  console.log(name);
   function handleUpdate() {
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id && subCategories._id}`, {
+      .put(`http://localhost:8000/categories/${category._id && subCategories._id}`, {
         name: name,
       })
       .then((res) => {
         const { status } = res;
         if (status === 200) {
           setName("");
+          setSubName("");
           setShowModal(false);
+          handleReload();
         }
       });
-    router.refresh();
   }
 
   return (
@@ -70,19 +73,6 @@ export default function CategoryEditModal({ category, subCategories }: PropType)
                       value={name}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
-                  </div>
-                  <span className=" font-bold ">Дэд ангилал</span>
-                  <div className="mb-6 mt-4">
-                    {subCategories.map((subCategory: any) => (
-                      <input
-                        placeholder=""
-                        type="text"
-                        id=""
-                        onChange={(e) => setSubName(e.target.value)}
-                        value={subCategory.name}
-                        className=" mb-4   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      />
-                    ))}
                   </div>
                 </div>
 

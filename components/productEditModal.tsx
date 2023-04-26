@@ -116,7 +116,9 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     onChange={(e) => setName(e.target.value)}
                     className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    htmlFor="default-input"
+                    className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Details
                   </label>
                   <input
@@ -127,7 +129,9 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     onChange={(e) => setDetails(e.target.value)}
                     className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
-                  <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    htmlFor="default-input"
+                    className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Барааны үнэ
                   </label>
                   <input
@@ -155,7 +159,10 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                     return (
                       <div className="grid grid-cols-3 gap-3 mb-4">
                         <div>
-                          <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                          <label
+                            htmlFor="default-input"
+                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
                             Size
                           </label>
                           <input
@@ -168,7 +175,10 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                           />
                         </div>
                         <div className="">
-                          <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                          <label
+                            htmlFor="default-input"
+                            className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          >
                             Stock
                           </label>
                           <input
@@ -181,7 +191,10 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                           />
                         </div>
                         <div className="mt-10">
-                          <button className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 " onClick={() => removeSecond(sizes.size)}>
+                          <button
+                            className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 "
+                            onClick={() => removeSecond(sizes.size)}
+                          >
                             <DeleteIcon className=" text-red-600" />
                           </button>
                         </div>
@@ -190,6 +203,8 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
                   })}
                   <button
                     onClick={() => setSizes([...sizes, { size: 0, stock: 0 }])}
+                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
+                  >
                     className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
                   >
                     size nemeh
