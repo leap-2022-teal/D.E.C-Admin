@@ -3,7 +3,6 @@ import chroma from "chroma-js";
 
 import Select, { StylesConfig } from "react-select";
 import { ColourOption, colourOptions } from "@/docs/data";
-
 const dot = (color = "transparent") => ({
   alignItems: "center",
   display: "flex",
@@ -39,6 +38,8 @@ const colourStyles: StylesConfig<ColourOption> = {
   placeholder: (styles) => ({ ...styles, ...dot("#ccc") }),
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
-
-const Color = () => <Select defaultValue={colourOptions[2]} options={colourOptions} styles={colourStyles} />;
+interface PropType {
+  handleColor: (e: any) => void;
+}
+const Color = ({ handleColor }: PropType) => <Select defaultValue={colourOptions[0]} options={colourOptions} styles={colourStyles} onChange={(e) => handleColor(e)} />;
 export default Color;
