@@ -38,7 +38,7 @@ export default function Categories() {
           <div className=" flex justify-between border-solid pb-4 border-b-2 ">
             <h1 className=" font-bold">Ангилал</h1>
             <Search />
-            <div className="w-[20%] flex justify-between">
+            <div className="w-[38%] flex justify-between">
               <Modal handleReload={handleReload} />
               <SubCategoryAdd handleReload={handleReload} />
             </div>
