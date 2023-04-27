@@ -17,8 +17,8 @@ export function SingleCategory({ category, subCategories, handleReload }: PropTy
       axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category?._id} `).then((res) => {
         const { status } = res;
         if (status === 200) {
+          handleReload();
         }
-        handleReload();
       });
     }
   }

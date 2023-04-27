@@ -28,11 +28,7 @@ export default function MainLayout({ children }: any) {
         </svg>
       </button>
 
-      <aside
-        id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
+      <aside id="default-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <div className="flex gap-3 px-6 py-4 font-normal text-gray-900">
             <div className="relative h-10 w-10">
@@ -50,10 +46,7 @@ export default function MainLayout({ children }: any) {
           </div>
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
                   className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -109,20 +102,14 @@ export default function MainLayout({ children }: any) {
               </a>
             </li> */}
             <li>
-              <Link
-                href={"/categories"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <Link href={"/categories"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <CategoryIcon className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
 
                 <span className="flex-1 ml-3 whitespace-nowrap">Ангилал</span>
               </Link>
             </li>
             <li>
-              <Link
-                href={"/products"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <Link href={"/products"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -136,17 +123,11 @@ export default function MainLayout({ children }: any) {
                     // clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  {" "}
-                  Бараа Бүтээгдэхүүн
-                </span>
+                <span className="flex-1 ml-3 whitespace-nowrap"> Бараа Бүтээгдэхүүн</span>
               </Link>
             </li>
             <li>
-              <Link
-                href={"/users"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <Link href={"/users"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -160,17 +141,12 @@ export default function MainLayout({ children }: any) {
                     // clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Хэрэглэгчид
-                </span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Хэрэглэгчид</span>
               </Link>
             </li>
 
             <li>
-              <Link
-                href={"/orders"}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <Link href={"/orders"} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -189,10 +165,7 @@ export default function MainLayout({ children }: any) {
             </li>
 
             <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+              <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -215,9 +188,7 @@ export default function MainLayout({ children }: any) {
 
       {/* /////////////////////////////////////// */}
 
-      <div className="p-4 sm:ml-64 md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64">
-        {children}
-      </div>
+      <div className="p-4 sm:ml-64 md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64">{children}</div>
     </>
   );
 }

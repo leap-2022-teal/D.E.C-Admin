@@ -31,8 +31,8 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
-        <ShareIcon className="mr-2" />
+      <button onClick={() => setShowModal(true)} className=" ml-4 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        <ShareIcon className="mr-2 " />
         Дэд ангилал нэмэх
       </button>
       {showModal ? (
