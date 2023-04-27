@@ -91,7 +91,7 @@ export default function ProductAddModal({ onEdit }: PropType) {
                       <SubCategorySelector
                         value={""}
                         handleSelected={setSubCategoryId}
-                      />
+                      />`
                     )} */}
                     <SubCategorySelector value={categoryId} handleSelected={setSubCategoryId} />
 

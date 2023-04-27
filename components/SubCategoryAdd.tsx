@@ -31,9 +31,10 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded" />
-      <ShareIcon className="mr-2" />
-      Дэд ангилал нэмэх
+      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        <ShareIcon className="mr-2" />
+        Дэд ангилал нэмэх
+      </button>
       {showModal ? (
         <div>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -45,11 +46,11 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
                   <span className=" font-bold">Дэд ангилал нэмэх</span>
                 </div>
                 {/*body*/}
-                <CategorySelector value={parentId} handleSelected={handleParent} />
                 <div className="relative p-6 flex-auto">
+                  <CategorySelector value={parentId} handleSelected={handleParent} />
                   <div className="mb-6">
                     <input
-                      placeholder="Ангилалаа оруулана уу?"
+                      placeholder="Дэд ангилалаа оруулна уу?"
                       type="text"
                       id="default-input"
                       value={name}
