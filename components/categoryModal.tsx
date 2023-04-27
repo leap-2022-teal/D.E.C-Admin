@@ -10,27 +10,14 @@ export default function Modal({ handleReload }: any) {
   const [parentId, setParentId] = useState("");
 
   function createCategory() {
-    if (parentId) {
-      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name, parentId }).then((res) => {
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-          setName("");
-        }
-      });
-    } else {
-      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name }).then((res) => {
-        const { status } = res;
-        if (status === 200) {
-          setShowModal(false);
-          setName("");
-        }
-      });
-    }
-  }
-
-  function handleParent(e: any) {
-    setParentId(e);
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name }).then((res) => {
+      const { status } = res;
+      if (status === 200) {
+        setShowModal(false);
+        setName("");
+        handleReload();
+      }
+    });
   }
 
   return (

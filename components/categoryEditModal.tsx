@@ -5,30 +5,30 @@ import { Categories } from "@/pages/categories";
 
 interface PropType {
   category: Categories;
-  subCategories: any;
+  subCategories: any[];
   handleReload: () => void;
 }
 
 export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
-  const [showModal, setShowModal] = React.useState(false);
-  const [name, setName] = useState<any>([]);
-  const [subName, setSubName] = useState<any>("");
+  const [showModal, setShowModal] = useState(false);
+  const [name, setName] = useState<any>();
+  const [subName, setSubName] = useState<any[]>();
 
   useEffect(() => {
     setName(category.name);
-    setSubName(subCategories.name);
+    setSubName(subCategories);
   }, []);
   console.log(name);
   function handleUpdate() {
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id && subCategories._id}`, {
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id}`, {
         name: name,
       })
       .then((res) => {
         const { status } = res;
         if (status === 200) {
           setName("");
-          setSubName("");
+
           setShowModal(false);
           handleReload();
         }
