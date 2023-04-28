@@ -4,14 +4,16 @@ import axios from "axios";
 
 import { Categories } from "@/pages/categories";
 import SingleSubCategories from "./singleSubCategories";
+import Highlighter from "react-highlight-words";
 
 interface PropType {
   category: Categories | undefined;
   subCategories: any;
   handleReload: () => void;
+  searchedQuery: string;
 }
 
-export function SingleCategory({ category, subCategories, handleReload }: PropType) {
+export function SingleCategory({ category, subCategories, handleReload, searchedQuery }: PropType) {
   function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
       axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category?._id} `).then((res) => {
@@ -27,7 +29,9 @@ export function SingleCategory({ category, subCategories, handleReload }: PropTy
   return (
     <>
       <div key={category._id} className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] ">
-        <div className=" text-gray-700 flex items-center font-bold ">{category.name}</div>
+        <div className=" text-gray-700 flex items-center font-bold ">
+          <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={category.name} />
+        </div>
 
         <div>
           {subCategories.map((subCategory: any) => (

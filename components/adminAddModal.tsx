@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import axios from "axios";
-
-export default function AdminAddModal() {
+interface PropType {
+  reload: () => void;
+}
+export default function AdminAddModal({ reload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState<any>("");
   const [email, setEmail] = useState<any>("");
@@ -26,6 +28,7 @@ export default function AdminAddModal() {
           setEmail("");
           setPassword("");
           setRole("");
+          reload();
         }
       });
   }

@@ -4,14 +4,18 @@ import SingleAdmins from "@/components/SingleAdmins";
 import Search from "@/components/Search";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Admins() {
   const [admins, setAdmins] = useState<any>("");
+  const router = useRouter();
 
   useEffect(() => {
     axios.get(`http://localhost:8000/users`).then((res) => setAdmins(res.data));
   }, []);
-
+  function handleReload() {
+    router.refresh();
+  }
   if (!admins) return null;
 
   return (
@@ -42,7 +46,7 @@ export default function Admins() {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {admins?.map((admin: any) => (
-              <SingleAdmins admin={admin} />
+              <SingleAdmins admin={admin} reload={handleReload} />
             ))}
           </tbody>
         </table>

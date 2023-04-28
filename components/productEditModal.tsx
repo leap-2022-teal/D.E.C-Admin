@@ -13,10 +13,10 @@ interface Sizes {
 }
 interface PropType {
   product: Product | undefined;
-  onEdit: () => void;
+  reload: () => void;
 }
 
-export default function ProductEditModal({ product, onEdit }: PropType) {
+export default function ProductEditModal({ product, reload }: PropType) {
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
   const [price, setPrice] = useState<number>();
@@ -59,7 +59,7 @@ export default function ProductEditModal({ product, onEdit }: PropType) {
         const { status } = res;
         if (status === 200) {
           setShowModal(false);
-          onEdit();
+          reload();
         }
       });
   }
