@@ -3,6 +3,7 @@ import ProductEditModal from "./ProductEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Product } from "@/pages/products";
 import Highlighter from "react-highlight-words";
+import { Categories } from "@/pages/categories";
 interface Size {
   size: number;
   stock: number;
@@ -11,9 +12,15 @@ interface PropType {
   product: Product | undefined;
   reload: () => void;
   searchedQuery: string;
+  categories: Category[];
+}
+interface Category {
+  _id: string;
+  parentId: string;
+  name: string;
 }
 
-export function SingleProduct({ product, reload, searchedQuery }: PropType) {
+export function SingleProduct({ product, reload, searchedQuery, categories }: PropType) {
   function handleDelete() {
     if (window.confirm(`${product?.name}-г  бүтээгдэхүүн устгах уу ?`)) {
       axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${product?._id}`).then((res) => {
@@ -36,8 +43,16 @@ export function SingleProduct({ product, reload, searchedQuery }: PropType) {
           {" "}
           <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={product.name} />
         </td>
+        <td className="text-left">
+          {" "}
+          {categories.map((category: any) => {
+            if (category._id === product.categoryId) {
+              return <div>{category.name}</div>;
+            }
+          })}
+        </td>
         <td className="text-left">${product.price}</td>
-        <td className="text-left ">
+        <td className="text-left">
           {product.sizes.map((size: Size) => {
             return <div>{size.size}</div>;
           })}

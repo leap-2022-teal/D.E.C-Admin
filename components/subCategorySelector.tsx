@@ -14,7 +14,7 @@ export default function SubCategorySelector({ handleSelected, value }: Props) {
   const [subCategories, setSubCategories] = useState([]);
   console.log(value);
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`)
       .then((res) => res.json())
       .then((data) => {
         const filteredSub = data.filter((sub: any) => {
