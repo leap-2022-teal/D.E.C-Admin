@@ -13,7 +13,7 @@ export default function CategorySelector({ handleSelected, value }: Props) {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
