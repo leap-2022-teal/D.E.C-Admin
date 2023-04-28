@@ -9,17 +9,17 @@ interface Size {
 }
 interface PropType {
   product: Product | undefined;
-  onEdit: () => void;
+  reload: () => void;
   searchedQuery: string;
 }
 
-export function SingleProduct({ product, onEdit, searchedQuery }: PropType) {
+export function SingleProduct({ product, reload, searchedQuery }: PropType) {
   function handleDelete() {
     if (window.confirm(`${product?.name}-г  бүтээгдэхүүн устгах уу ?`)) {
       axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${product?._id}`).then((res) => {
         const { status } = res;
         if (status === 200) {
-          onEdit();
+          reload();
         }
       });
     }
@@ -50,7 +50,7 @@ export function SingleProduct({ product, onEdit, searchedQuery }: PropType) {
 
         <td className="text-left">
           <div className=" pr-20 flex justify-end gap-4">
-            <ProductEditModal product={product} key={product._id} onEdit={onEdit} />
+            <ProductEditModal product={product} key={product._id} reload={reload} />
             <button onClick={handleDelete} className=" hover:bg-gray-300 rounded-[5px] w-9 h-9 ">
               <DeleteIcon className=" text-red-600" />
             </button>

@@ -2,13 +2,17 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import AdminEditModal from "./AdminEditModal";
-
-export default function SingleAdmins({ admin }: any) {
+interface PropType {
+  admin: any;
+  reload: () => void;
+}
+export default function SingleAdmins({ admin, reload }: PropType) {
   function handleDelete() {
-    if (window.confirm("Aнгилал устгах уу ?")) {
+    if (window.confirm("Хэрэглэгч устгах уу ?")) {
       axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users/${admin?._id} `).then((res) => {
         const { status } = res;
         if (status === 200) {
+          reload();
         }
       });
     }
@@ -44,7 +48,7 @@ export default function SingleAdmins({ admin }: any) {
       </td>
       <td className="px-6 py-4">
         <div className="flex justify-end gap-4">
-          <AdminEditModal admin={admin} />
+          <AdminEditModal admin={admin} reload={reload} />
           <button onClick={handleDelete} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
             <DeleteIcon className="text-red-500 " />
           </button>

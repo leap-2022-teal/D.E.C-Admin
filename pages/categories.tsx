@@ -6,6 +6,8 @@ import { SingleCategory } from "../components/SingleCategory";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import SubCategoryAdd from "@/components/SubCategoryAdd";
+import { useCategories } from "@/components/useCategories";
+import { useDebounce } from "use-debounce";
 
 export interface Categories {
   name: string;
@@ -15,17 +17,20 @@ export interface Categories {
 }
 export default function Categories() {
   const router = useRouter();
+  const [query, setQuery] = useState("");
+  const [searchedQuery] = useDebounce(query, 1000);
 
-  const [categories, setCategories] = useState([]);
+  const categories = useCategories(searchedQuery);
+
   const filteredCategories = categories.filter((category: any) => {
     if (!category.parentId) {
       return category;
     }
   });
 
-  useEffect(() => {
-    axios.get(`http://localhost:8000/categories`).then((res) => setCategories(res.data));
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`http://localhost:8000/categories`).then((res) => setCategories(res.data));
+  // }, []);
 
   function handleReload() {
     router.refresh();
@@ -37,7 +42,7 @@ export default function Categories() {
         <div>
           <div className=" flex justify-between border-solid pb-4 border-b-2 ">
             <h1 className=" font-bold">Ангилал</h1>
-            <Search />
+            <input value={query} onChange={(e: any) => setQuery(e.target.value)} className="border-2 border-black w-[400px]" placeholder="search.." />
             <div>
               <Modal handleReload={handleReload} />
               <SubCategoryAdd handleReload={handleReload} />
@@ -58,6 +63,7 @@ export default function Categories() {
                   subCategories={subCategories}
                   category={category}
                   key={category._id}
+                  searchedQuery={searchedQuery}
                   // onDelete={handleDelete}
                 />
               );

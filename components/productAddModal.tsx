@@ -10,10 +10,10 @@ interface Sizes {
   stock: number;
 }
 interface PropType {
-  onEdit: () => void;
+  reload: () => void;
 }
 
-export default function ProductAddModal({ onEdit }: PropType) {
+export default function ProductAddModal({ reload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
@@ -61,7 +61,7 @@ export default function ProductAddModal({ onEdit }: PropType) {
       image,
       subCategoryId,
     });
-    onEdit();
+    reload();
   }
   console.log(color);
 

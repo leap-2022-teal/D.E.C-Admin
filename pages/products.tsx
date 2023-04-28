@@ -1,12 +1,9 @@
 import MainLayout from "@/components/MainLayout";
 import ProductAddModal from "@/components/ProductAddModal";
-
-import Search from "@/components/Search";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDebounce } from "use-debounce";
 import { SingleProduct } from "@/components/SingleProduct";
 import { useRouter } from "next/navigation";
-import { axioser } from "@/utils/axioser";
 import { useProducts } from "@/components/useProducts";
 
 export interface Stock {
@@ -76,7 +73,7 @@ export default function Products() {
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
               {products?.map((product: Product) => (
-                <SingleProduct product={product} key={product._id} onEdit={handleReload} searchedQuery={searchedQuery} />
+                <SingleProduct product={product} key={product._id} reload={handleReload} searchedQuery={searchedQuery} />
               ))}
             </tbody>
           </table>

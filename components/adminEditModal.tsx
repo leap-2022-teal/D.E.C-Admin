@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 
-export default function AdminEditModal({ admin }: any) {
+interface PropType {
+  admin: any;
+  reload: () => void;
+}
+export default function AdminEditModal({ admin, reload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState<any>("");
   const [email, setEmail] = useState<any>("");
@@ -32,6 +36,7 @@ export default function AdminEditModal({ admin }: any) {
           setPassword("");
           setRole("");
           setUserName("");
+          reload();
         }
       });
   }
