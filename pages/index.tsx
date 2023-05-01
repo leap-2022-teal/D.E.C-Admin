@@ -1,5 +1,9 @@
 import MainLayout from "@/components/MainLayout";
+import Signin from "@/components/signin";
 
 export default function Home() {
-  return <MainLayout>Welcome</MainLayout>;
+  // return 
+  return(
+    <Signin/>
+  )
 }
