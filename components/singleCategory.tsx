@@ -5,6 +5,7 @@ import axios from "axios";
 import { Categories } from "@/pages/categories";
 import SingleSubCategories from "./singleSubCategories";
 import Highlighter from "react-highlight-words";
+import Link from "next/link";
 
 interface PropType {
   category: Categories | undefined;
@@ -29,9 +30,11 @@ export function SingleCategory({ category, subCategories, handleReload, searched
   return (
     <>
       <div key={category._id} className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] ">
-        <div className=" text-gray-700 flex items-center font-bold ">
-          <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={category.name} />
-        </div>
+        <Link href={`/categories/${category._id}`}>
+          <div className=" text-gray-700 flex items-center font-bold ">
+            <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={category.name} />
+          </div>
+        </Link>
 
         <div>
           {subCategories.map((subCategory: any) => (

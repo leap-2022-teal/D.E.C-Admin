@@ -91,6 +91,7 @@ export default function ProductAddModal({ reload }: PropType) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                     <CategorySelector value={""} handleSelected={setCategoryId} />
                     {/* {categoryId !== subCategoryId ? null : (
                       <SubCategorySelector
@@ -98,6 +99,7 @@ export default function ProductAddModal({ reload }: PropType) {
                         handleSelected={setSubCategoryId}
                       />`
                     )} */}
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Category</label>
                     <SubCategorySelector value={categoryId} handleSelected={setSubCategoryId} />
 
                     <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
