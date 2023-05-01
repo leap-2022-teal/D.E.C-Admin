@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+interface PropType {
+  searchedQuery: any;
+  categoryId: string;
+}
 
-export function useProducts(searchedQuery: any) {
+export function useProducts({ searchedQuery, categoryId }: PropType) {
   const [list, setList] = useState([]);
 
-  function loadProducts(query = "") {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products?q=${query}`).then((res) => {
+  function loadProducts(searchedQuery = "", categoryId = "") {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products?searchQuery=${searchedQuery}&categoryId=${categoryId}`).then((res) => {
       const { data, status } = res;
       if (status === 200) {
         setList(data);
@@ -16,8 +20,8 @@ export function useProducts(searchedQuery: any) {
   }
 
   useEffect(() => {
-    loadProducts(searchedQuery);
-  }, [searchedQuery]);
+    loadProducts(searchedQuery, categoryId);
+  }, [searchedQuery, categoryId]);
 
   return list;
 }

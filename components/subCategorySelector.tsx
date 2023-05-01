@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 
 interface Categories {
   name: string;
@@ -12,6 +13,9 @@ interface Props {
 
 export default function SubCategorySelector({ handleSelected, value }: Props) {
   const [subCategories, setSubCategories] = useState([]);
+  const [isClearable, setIsClearable] = useState(true);
+  const [isSearchable, setIsSearchable] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   console.log(value);
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`)
@@ -26,25 +30,24 @@ export default function SubCategorySelector({ handleSelected, value }: Props) {
       });
   }, [value]);
 
-  function handleChange(e: any) {
-    handleSelected(e.target.value);
-    console.log(e.target.value);
-  }
-
   return (
     <>
-      <select onChange={handleChange} className="mb-4 border-2 rounded-[5px] border-gray-300">
-        <option value="">Дэд aнгилалаа сонгоно уу?</option>
-        {subCategories.map((subCategory: Categories) => {
-          if (subCategory.parentId) {
-            return (
-              <option key={subCategory._id} value={subCategory._id} label={subCategory.name}>
-                {subCategory.name}
-              </option>
-            );
-          }
-        })}
-      </select>
+      <Select
+        className="basic-single"
+        classNamePrefix="select"
+        name="subCategories"
+        isLoading={isLoading}
+        isClearable={isClearable}
+        isSearchable={isSearchable}
+        hideSelectedOptions={false}
+        options={subCategories
+          .filter((category: Categories) => category.parentId)
+          .map((category: Categories) => ({
+            value: category._id,
+            label: category.name,
+          }))}
+        onChange={(selectedOption) => handleSelected(selectedOption?.value)}
+      />
     </>
   );
 }

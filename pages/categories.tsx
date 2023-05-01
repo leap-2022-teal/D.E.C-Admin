@@ -1,9 +1,7 @@
 import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
 import Modal from "@/components/categoryModal";
-import Search from "@/components/Search";
 import { SingleCategory } from "../components/SingleCategory";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import SubCategoryAdd from "@/components/SubCategoryAdd";
 import { useCategories } from "@/components/useCategories";
@@ -18,7 +16,7 @@ export interface Categories {
 export default function Categories() {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const [searchedQuery] = useDebounce(query, 1000);
+  const [searchedQuery] = useDebounce(query, 300);
 
   const categories = useCategories(searchedQuery);
 
@@ -37,40 +35,38 @@ export default function Categories() {
   }
 
   return (
-    <MainLayout>
-      <div className=" ">
-        <div>
-          <div className=" flex justify-between border-solid pb-4 border-b-2 ">
-            <h1 className=" font-bold">Ангилал</h1>
-            <input value={query} onChange={(e: any) => setQuery(e.target.value)} className="border-2 border-black w-[400px]" placeholder="search.." />
-            <div>
-              <Modal handleReload={handleReload} />
-              <SubCategoryAdd handleReload={handleReload} />
-            </div>
-          </div>
-        </div>
-        <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
-          <div className="">
-            {filteredCategories?.map((category: Categories) => {
-              const subCategories = categories.filter((subCategory: Categories) => {
-                if (subCategory.parentId === category._id) {
-                  return subCategory;
-                }
-              });
-              return (
-                <SingleCategory
-                  handleReload={handleReload}
-                  subCategories={subCategories}
-                  category={category}
-                  key={category._id}
-                  searchedQuery={searchedQuery}
-                  // onDelete={handleDelete}
-                />
-              );
-            })}
+    <div className=" ">
+      <div>
+        <div className=" flex justify-between border-solid pb-4 border-b-2 ">
+          <h1 className=" font-bold">Ангилал</h1>
+          <input value={query} onChange={(e: any) => setQuery(e.target.value)} className="border-1 bg-gray-200 max-w-xs rounded-full px-4" placeholder="search.." />
+          <div>
+            <Modal handleReload={handleReload} />
+            <SubCategoryAdd handleReload={handleReload} />
           </div>
         </div>
       </div>
-    </MainLayout>
+      <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
+        <div className="">
+          {filteredCategories?.map((category: Categories) => {
+            const subCategories = categories.filter((subCategory: Categories) => {
+              if (subCategory.parentId === category._id) {
+                return subCategory;
+              }
+            });
+            return (
+              <SingleCategory
+                handleReload={handleReload}
+                subCategories={subCategories}
+                category={category}
+                key={category._id}
+                searchedQuery={searchedQuery}
+                // onDelete={handleDelete}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
