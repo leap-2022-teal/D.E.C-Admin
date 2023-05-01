@@ -6,7 +6,7 @@ export default function SingleSubCategories({ category, subCategory, handleReloa
   function handleDeleteSubCategory() {
     if (subCategory.parentId) {
       if (window.confirm("Aнгилал устгах уу ?")) {
-        axios.delete(`${process.env.PUBLIC}categories/${subCategory?._id} `).then((res) => {
+        axios.delete(`${process.env.NEXT_PUBLIC_API_URL}categories/${subCategory?._id} `).then((res) => {
           const { status } = res;
           if (status === 200) {
             handleReload();

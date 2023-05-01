@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 interface Categories {
   name: string;
   parentId?: string;
@@ -11,6 +12,9 @@ interface Props {
 
 export default function CategorySelector({ handleSelected, value }: Props) {
   const [categories, setCategories] = useState([]);
+  const [isClearable, setIsClearable] = useState(true);
+  const [isSearchable, setIsSearchable] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`)
@@ -18,25 +22,23 @@ export default function CategorySelector({ handleSelected, value }: Props) {
       .then((data) => setCategories(data));
   }, []);
 
-  function handleChange(e: any) {
-    handleSelected(e.target.value);
-    console.log(e.target.value);
-  }
-
   return (
     <>
-      <select onChange={handleChange} className="mb-4 border-2 rounded-[5px] border-gray-300">
-        <option value="">Ангилалаа сонгоно уу?</option>
-        {categories.map((category: Categories) => {
-          if (!category.parentId) {
-            return (
-              <option key={category._id} value={category._id} label={category.name}>
-                {category.name}
-              </option>
-            );
-          }
-        })}
-      </select>
+      <Select
+        className="basic-single"
+        classNamePrefix="select"
+        isLoading={isLoading}
+        isClearable={isClearable}
+        isSearchable={isSearchable}
+        name="categories"
+        options={categories
+          .filter((category: Categories) => !category.parentId)
+          .map((category: Categories) => ({
+            value: category._id,
+            label: category.name,
+          }))}
+        onChange={(selectedOption) => handleSelected(selectedOption?.value)}
+      />
     </>
   );
 }
