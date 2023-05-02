@@ -1,5 +1,5 @@
 import MainLayout from "@/components/MainLayout";
-import AdminAddModal from "@/components/AdminAddModal";
+// import AdminAddModal from "@/components/AdminAddModal";
 import SingleAdmins from "@/components/SingleAdmins";
 import Search from "@/components/Search";
 import axios from "axios";
@@ -19,11 +19,11 @@ export default function Admins() {
   if (!admins) return null;
 
   return (
-    <MainLayout>
+    <>
       <div className=" overflow-visible flex  justify-between border-solid pb-4 border-b-2">
         <h1 className=" font-bold">Админ</h1>
         <Search />
-        <AdminAddModal />
+        {/* <AdminAddModal /> */}
       </div>
       <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
         <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
@@ -51,6 +51,6 @@ export default function Admins() {
           </tbody>
         </table>
       </div>
-    </MainLayout>
+    </>
   );
 }
