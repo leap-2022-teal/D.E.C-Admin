@@ -36,12 +36,6 @@ export function SingleCategory({ category, subCategories, handleReload, searched
           </div>
         </Link>
 
-        <div>
-          {subCategories.map((subCategory: any) => (
-            <SingleSubCategories handleReload={handleReload} category={category} subCategory={subCategory} key={category._id} />
-          ))}
-        </div>
-
         <div className=" flex items-center">
           <CategoryEditModal handleReload={handleReload} subCategories={subCategories} category={category} key={category._id} />
 

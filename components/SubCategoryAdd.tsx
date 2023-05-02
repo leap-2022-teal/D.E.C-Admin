@@ -3,11 +3,11 @@ import ShareIcon from "@mui/icons-material/Share";
 import CategorySelector from "./CategorySelector";
 import axios from "axios";
 
-interface PropType {
-  handleReload: () => void;
-}
+// interface PropType {
+//   handleReload: () => void;
+// }
 
-export default function SubCategoryAdd({ handleReload }: PropType) {
+export default function SubCategoryAdd() {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [parentId, setParentId] = useState("");
@@ -19,7 +19,8 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
         if (status === 200) {
           setShowModal(false);
           setName("");
-          handleReload();
+          // handleReload();
+          window.location.reload();
         }
       });
     }
@@ -46,9 +47,9 @@ export default function SubCategoryAdd({ handleReload }: PropType) {
                   <span className=" font-bold">Дэд ангилал нэмэх</span>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
+                <div className="relative p-6 flex-auto ">
                   <CategorySelector value={parentId} handleSelected={handleParent} />
-                  <div className="mb-6">
+                  <div className="mb-6 mt-6">
                     <input
                       placeholder="Дэд ангилалаа оруулна уу?"
                       type="text"
