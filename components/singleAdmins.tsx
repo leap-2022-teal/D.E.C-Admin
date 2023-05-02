@@ -1,14 +1,18 @@
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import AdminEditModal from "./adminEditModal";
-
-export default function SingleAdmins({ admin }: any) {
+import AdminEditModal from "./AdminEditModal";
+interface PropType {
+  admin: any;
+  reload: () => void;
+}
+export default function SingleAdmins({ admin, reload }: PropType) {
   function handleDelete() {
-    if (window.confirm("Aнгилал устгах уу ?")) {
-      axios.delete(`http://localhost:8000/users/${admin?._id} `).then((res) => {
+    if (window.confirm("Хэрэглэгч устгах уу ?")) {
+      axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users/${admin?._id} `).then((res) => {
         const { status } = res;
         if (status === 200) {
+          reload();
         }
       });
     }
@@ -39,18 +43,13 @@ export default function SingleAdmins({ admin }: any) {
       <td className="px-6 py-4">{admin.role}</td>
       <td className="px-6 py-4">
         <div className="flex gap-2">
-          <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-            {admin.email}
-          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">{admin.email}</span>
         </div>
       </td>
       <td className="px-6 py-4">
         <div className="flex justify-end gap-4">
-          <AdminEditModal admin={admin} />
-          <button
-            onClick={handleDelete}
-            className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
-          >
+          <AdminEditModal admin={admin} reload={reload} />
+          <button onClick={handleDelete} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
             <DeleteIcon className="text-red-500 " />
           </button>
         </div>

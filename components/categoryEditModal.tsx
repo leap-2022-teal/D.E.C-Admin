@@ -1,48 +1,44 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
+import { Categories } from "@/pages/categories";
 
-export default function AdminEditModal({ admin }: any) {
+interface PropType {
+  category: Categories;
+  subCategories: any[];
+  handleReload: () => void;
+}
+
+export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
   const [showModal, setShowModal] = useState(false);
-  const [userName, setUserName] = useState<any>("");
-  const [email, setEmail] = useState<any>("");
-  const [password, setPassword] = useState<any>("");
-  const [role, setRole] = useState<any>("");
+  const [name, setName] = useState<any>();
+  const [subName, setSubName] = useState<any[]>();
 
   useEffect(() => {
-    setUserName(admin.userName);
-    setEmail(admin.email);
-    setPassword(admin.password);
-    setRole(admin.role);
+    setName(category.name);
+    setSubName(subCategories);
   }, []);
-  console.log(userName, email, password, role);
+  console.log(name);
   function handleUpdate() {
     axios
-      .put(`http://localhost:8000/users/${admin._id}`, {
-        userName: userName,
-        email: email,
-        password: password,
-        role: role,
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id}`, {
+        name: name,
       })
       .then((res) => {
         const { status } = res;
         if (status === 200) {
-          setEmail("");
+          setName("");
+
           setShowModal(false);
-          setPassword("");
-          setRole("");
-          setUserName("");
+          handleReload();
         }
       });
   }
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
-      >
-        <EditIcon />
+      <button onClick={() => setShowModal(true)} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
+        <EditIcon className=" text-gray-700" />
       </button>
 
       {showModal ? (
@@ -58,59 +54,25 @@ export default function AdminEditModal({ admin }: any) {
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                   </button>
                 </div>
                 {/*body*/}
 
                 <div className="relative p-6 flex-auto">
-                  <span className=" font-bold p">Админ нэр</span>
+                  <span className=" font-bold p">Ангилал</span>
                   <div className="mb-6 mt-4">
                     <input
                       placeholder=""
                       type="text"
                       id=""
-                      onChange={(e) => setUserName(e.target.value)}
-                      value={userName}
-                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
-                  <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300"
-                    id=""
-                  >
-                    <option></option>
-                    <option>Admin</option>
-                    <option>Moderator</option>
-                  </select>
-                  <span className=" font-bold ">E-mail</span>
-                  <div className="mb-6 mt-4">
-                    <input
-                      placeholder=""
-                      type="text"
-                      id=""
-                      onChange={(e) => setEmail(e.target.value)}
-                      value={email}
-                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
-                  </div>
-
-                  <span className=" font-bold ">Password</span>
-                  <div className="mb-6 mt-4">
-                    <input
-                      placeholder=""
-                      type="text"
-                      id=""
-                      onChange={(e) => setPassword(e.target.value)}
-                      value={password}
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
                 </div>
+
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button

@@ -1,59 +1,56 @@
-import React, { useEffect, useState } from "react";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import React, { useState } from "react";
+import ShareIcon from "@mui/icons-material/Share";
+import CategorySelector from "./CategorySelector";
 import axios from "axios";
 
-export default function Modal() {
+interface PropType {
+  handleReload: () => void;
+}
+
+export default function SubCategoryAdd({ handleReload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
-  function createCategory() {
-    axios
-      .post(`http://localhost:8000/categories`, { name: name })
-      .then((res) => {
+  const [parentId, setParentId] = useState("");
+
+  function createSubCategory() {
+    if (parentId) {
+      axios.post(`http://localhost:8000/categories`, { name, parentId }).then((res) => {
         const { status } = res;
         if (status === 200) {
           setShowModal(false);
           setName("");
+          handleReload();
         }
       });
+    }
+  }
+
+  function handleParent(e: any) {
+    setParentId(e);
   }
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
-      >
-        <AddCircleOutlineIcon className="mr-2" />
-        Ангилал нэмэх
+      <button onClick={() => setShowModal(true)} className=" ml-4 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+        <ShareIcon className="mr-2 " />
+        Дэд ангилал нэмэх
       </button>
-
       {showModal ? (
-        <>
+        <div>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Ангилал нэмэх</h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
+                  <span className=" font-bold">Дэд ангилал нэмэх</span>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
+                  <CategorySelector value={parentId} handleSelected={handleParent} />
                   <div className="mb-6">
-                    <label
-                      htmlFor="default-input"
-                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    ></label>
                     <input
-                      placeholder="Ангилалаа оруулана уу?"
+                      placeholder="Дэд ангилалаа оруулна уу?"
                       type="text"
                       id="default-input"
                       value={name}
@@ -62,6 +59,7 @@ export default function Modal() {
                     />
                   </div>
                 </div>
+
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
@@ -74,7 +72,7 @@ export default function Modal() {
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={createCategory}
+                    onClick={createSubCategory}
                   >
                     хадгалах
                   </button>
@@ -83,7 +81,7 @@ export default function Modal() {
             </div>
           </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-        </>
+        </div>
       ) : null}
     </>
   );

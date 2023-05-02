@@ -1,55 +1,51 @@
-import CategoryEditModal from "@/components/modals/categoryEditModal";
+import CategoryEditModal from "@/components/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import ClearIcon from "@mui/icons-material/Clear";
 
-export function SingleCategory({ category }: any) {
-  function handleDelete(selection: any, index: number) {
-    console.log(category.subCategories);
-    console.log(selection, index);
+import { Categories } from "@/pages/categories";
+import SingleSubCategories from "./singleSubCategories";
+import Highlighter from "react-highlight-words";
+import Link from "next/link";
 
+interface PropType {
+  category: Categories | undefined;
+  subCategories: any;
+  handleReload: () => void;
+  searchedQuery: string;
+}
+
+export function SingleCategory({ category, subCategories, handleReload, searchedQuery }: PropType) {
+  function handleDelete() {
     if (window.confirm("Aнгилал устгах уу ?")) {
-      axios
-        .delete(`http://localhost:8000/categories/${category._id} `)
-        .then((res) => {
-          const { status } = res;
-          if (status === 200) {
-          }
-        });
+      axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category?._id} `).then((res) => {
+        const { status } = res;
+        if (status === 200) {
+          handleReload();
+        }
+      });
     }
   }
 
-  function deleteSubCategory() {}
+  if (!category) return null;
   return (
     <>
-      <div
-        key={category._id}
-        className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] "
-      >
-        <div className=" text-gray-700 flex items-center font-bold ">
-          {category.name}
-        </div>
+      <div key={category._id} className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] ">
+        <Link href={`/categories/${category._id}`}>
+          <div className=" text-gray-700 flex items-center font-bold ">
+            <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={category.name} />
+          </div>
+        </Link>
 
-        <div className="">
-          {category.subCategories?.map((subTitle: any, index: number) => (
-            <div className=" text-gray-600 bg-gray-100 rounded-[5px] border-solid border-1 hover:bg-gray-200 mb-2 p-2 flex justify-between">
-              {subTitle.title}
-              <div className=" hover:bg-gray-300 rounded-[5px] ml-3">
-                <button onClick={() => handleDelete("subCategory", index)}>
-                  <ClearIcon className=" text-red-500 hover:text-red-400 " />
-                </button>
-              </div>
-            </div>
+        <div>
+          {subCategories.map((subCategory: any) => (
+            <SingleSubCategories handleReload={handleReload} category={category} subCategory={subCategory} key={category._id} />
           ))}
         </div>
 
         <div className=" flex items-center">
-          <CategoryEditModal category={category} />
+          <CategoryEditModal handleReload={handleReload} subCategories={subCategories} category={category} key={category._id} />
 
-          <button
-            onClick={() => handleDelete("category", 0)}
-            className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
-          >
+          <button onClick={handleDelete} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
             <DeleteIcon className="text-red-500 " />
           </button>
         </div>

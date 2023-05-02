@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import CategorySelector from "./categorySelector";
-import { useCreateProduct } from "./createProducts";
+import CategorySelector from "./CategorySelector";
+import { useCreateProduct } from "./CreateProducts";
+import SubCategorySelector from "./SubCategorySelector";
+import Color from "./ColorSelector";
 
 interface Sizes {
   size: number;
   stock: number;
 }
+interface PropType {
+  reload: () => void;
+}
 
-export default function ProductAddModal() {
+export default function ProductAddModal({ reload }: PropType) {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
@@ -18,7 +23,10 @@ export default function ProductAddModal() {
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
+  const [subCategoryId, setSubCategoryId] = useState();
   const createNewProduct = useCreateProduct();
+
+  // const { refresh }: any = RefreshRouter();
 
   async function handleFileUpload(event: any) {
     setUploading(true);
@@ -27,7 +35,7 @@ export default function ProductAddModal() {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    await fetch(`http://localhost:8000/upload-image`, {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/upload-image`, {
       method: "POST",
       body: formData,
     })
@@ -36,6 +44,10 @@ export default function ProductAddModal() {
         setImage(data);
         setUploading(false);
       });
+  }
+
+  function handleColor(e: any): void {
+    setColor(e.value);
   }
 
   function handleSubmit() {
@@ -47,15 +59,15 @@ export default function ProductAddModal() {
       categoryId,
       sizes,
       image,
+      subCategoryId,
     });
-    useEffect;
+    reload();
   }
+  console.log(color);
 
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
+      <button onClick={() => setShowModal(true)} className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded">
         <AddCircleOutlineIcon className=" mr-2" />
         Бүтээгдэхүүн нэмэх
       </button>
@@ -71,22 +83,26 @@ export default function ProductAddModal() {
                   <h3 className="text-3xl font-semibold">Бүтээгдэхүүн нэмэх</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}>
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                    onClick={() => setShowModal(false)}
+                  >
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                   </button>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
-                    <CategorySelector
-                      value={""}
-                      handleSelected={setCategoryId}
-                    />
-                    <label
-                      htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <CategorySelector value={""} handleSelected={setCategoryId} />
+                    {/* {categoryId !== subCategoryId ? null : (
+                      <SubCategorySelector
+                        value={""}
+                        handleSelected={setSubCategoryId}
+                      />`
+                    )} */}
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sub Category</label>
+                    <SubCategorySelector value={categoryId} handleSelected={setSubCategoryId} />
+
+                    <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Барааны нэр
                     </label>
                     <input
@@ -97,9 +113,7 @@ export default function ProductAddModal() {
                       onChange={(e) => setName(e.target.value)}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
-                    <label
-                      htmlFor="default-input"
-                      className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Details
                     </label>
                     <input
@@ -110,9 +124,7 @@ export default function ProductAddModal() {
                       onChange={(e) => setDetails(e.target.value)}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
-                    <label
-                      htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Барааны үнэ
                     </label>
                     <input
@@ -123,25 +135,14 @@ export default function ProductAddModal() {
                       onChange={(e) => setPrice(Number(e.target.value))}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
-
-                    <label
-                      htmlFor="default-input"
-                      className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                       Color
                     </label>
-                    <input
-                      placeholder=""
-                      type="text"
-                      id="default-input"
-                      value={color}
-                      onChange={(e: any) => setColor(e.target.value)}
-                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    />
+                    <Color handleColor={handleColor} />
+
                     <div className="grid grid-cols-2 gap-3 mb-4">
                       <div>
-                        <label
-                          htmlFor="default-input"
-                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                           Size
                         </label>
                         <input
@@ -149,18 +150,12 @@ export default function ProductAddModal() {
                           type="number"
                           id="default-input"
                           value={sizes[0]?.size}
-                          onChange={(e: any) =>
-                            setSizes([
-                              { size: e.target.value, stock: sizes[0].stock },
-                            ])
-                          }
+                          onChange={(e: any) => setSizes([{ size: e.target.value, stock: sizes[0].stock }])}
                           className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="default-input"
-                          className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                           Stock
                         </label>
                         <input
@@ -168,21 +163,13 @@ export default function ProductAddModal() {
                           type="number"
                           id="default-input"
                           value={sizes[0]?.stock}
-                          onChange={(e: any) =>
-                            setSizes([
-                              { size: sizes[0].size, stock: e.target.value },
-                            ])
-                          }
+                          onChange={(e: any) => setSizes([{ size: sizes[0].size, stock: e.target.value }])}
                           className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
                       </div>
                     </div>
                     <div>
-                      <input
-                        type="file"
-                        name="image"
-                        onChange={handleFileUpload}
-                      />
+                      <input type="file" name="image" onChange={handleFileUpload} />
 
                       {uploading && (
                         <div className="spinner-border" role="status">
@@ -191,7 +178,8 @@ export default function ProductAddModal() {
                             className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                             viewBox="0 0 100 101"
                             fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
                             <path
                               d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
                               fill="currentColor"
@@ -214,13 +202,15 @@ export default function ProductAddModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}>
+                    onClick={() => setShowModal(false)}
+                  >
                     хаах
                   </button>
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleSubmit}>
+                    onClick={handleSubmit}
+                  >
                     хадгалах
                   </button>
                 </div>

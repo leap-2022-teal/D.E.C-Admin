@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import ShareIcon from "@mui/icons-material/Share";
 
-interface subCategory {
-  title: string;
+interface PropType {
+  admin: any;
+  reload: () => void;
 }
-
-export default function CategoryEditModal({ category }: any) {
-  const [showModal, setShowModal] = React.useState(false);
-  const [name, setName] = useState<any>([]);
-  const [subCategories, setSubCategories] = useState<subCategory[]>([]);
+export default function AdminEditModal({ admin, reload }: PropType) {
+  const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState<any>("");
+  const [email, setEmail] = useState<any>("");
+  const [password, setPassword] = useState<any>("");
+  const [role, setRole] = useState<any>("");
 
   useEffect(() => {
-    setName(category.name);
-    setSubCategories(category.subCategories);
+    setUserName(admin.userName);
+    setEmail(admin.email);
+    setPassword(admin.password);
+    setRole(admin.role);
   }, []);
-
+  console.log(userName, email, password, role);
   function handleUpdate() {
     axios
-      .put(`http://localhost:8000/categories/${category._id}`, {
-        name: name,
-        subCategories: subCategories,
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/users/${admin._id}`, {
+        userName: userName,
+        email: email,
+        password: password,
+        role: role,
       })
       .then((res) => {
         const { status } = res;
         if (status === 200) {
-          setName("");
+          setEmail("");
           setShowModal(false);
+          setPassword("");
+          setRole("");
+          setUserName("");
+          reload();
         }
       });
   }
 
-  function handleSubCategory(e: any, index: number) {
-    console.log(index);
-    const newState = [...subCategories];
-    newState[index] = { title: e };
-    setSubCategories(newState);
-  }
-
   return (
     <>
-      <button
-        onClick={() => setShowModal(true)}
-        className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 "
-      >
-        <EditIcon className=" text-gray-700" />
+      <button onClick={() => setShowModal(true)} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
+        <EditIcon />
       </button>
 
       {showModal ? (
@@ -61,54 +60,51 @@ export default function CategoryEditModal({ category }: any) {
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                   </button>
                 </div>
                 {/*body*/}
 
                 <div className="relative p-6 flex-auto">
-                  <span className=" font-bold p">Ангилал</span>
+                  <span className=" font-bold p">Админ нэр</span>
                   <div className="mb-6 mt-4">
                     <input
                       placeholder=""
                       type="text"
                       id=""
-                      onChange={(e) => setName(e.target.value)}
-                      value={name}
+                      onChange={(e) => setUserName(e.target.value)}
+                      value={userName}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
-                  <span className=" font-bold ">Дэд ангилал</span>
-                  {subCategories?.map((subCategory: any, index: number) => {
-                    return (
-                      <>
-                        <div className="mb-6 mt-4">
-                          <input
-                            placeholder=""
-                            type="text"
-                            id=""
-                            onChange={(e) =>
-                              handleSubCategory(e.target.value, index)
-                            }
-                            value={subCategory.title}
-                            className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          />
-                        </div>
-                      </>
-                    );
-                  })}
+                  <select value={role} onChange={(e) => setRole(e.target.value)} className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300" id="">
+                    <option></option>
+                    <option>Admin</option>
+                    <option>Moderator</option>
+                  </select>
+                  <span className=" font-bold ">E-mail</span>
+                  <div className="mb-6 mt-4">
+                    <input
+                      placeholder=""
+                      type="text"
+                      id=""
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                  </div>
 
-                  <button
-                    onClick={() =>
-                      setSubCategories([...subCategories, { title: "" }])
-                    }
-                    className="bg-green-500 h-[40px] hover:bg-green-400 text-white font-bold py-2 px-4 rounded block text-sm  text-center  focus:ring-4 focus:outline-none focus:ring-blue-300"
-                  >
-                    <ShareIcon className="mr-2" />
-                    Дэд Ангилал нэмэх
-                  </button>
+                  <span className=" font-bold ">Password</span>
+                  <div className="mb-6 mt-4">
+                    <input
+                      placeholder=""
+                      type="text"
+                      id=""
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                  </div>
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
