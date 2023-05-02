@@ -36,16 +36,14 @@ export default function Categories() {
 
   return (
     <div className=" ">
-      <div>
-        <div className=" flex justify-between border-solid pb-4 border-b-2 ">
-          <h1 className=" font-bold">Ангилал</h1>
-          <input value={query} onChange={(e: any) => setQuery(e.target.value)} className="border-1 bg-gray-200 max-w-xs rounded-full px-4" placeholder="search.." />
-          <div>
-            <Modal handleReload={handleReload} />
-            <SubCategoryAdd handleReload={handleReload} />
-          </div>
+      <div className=" flex justify-between border-solid pb-4 border-b-2 ">
+        <h1 className=" font-bold">Ангилал</h1>
+        <input value={query} onChange={(e: any) => setQuery(e.target.value)} className="border-1 bg-gray-200 max-w-xs rounded-full px-4" placeholder="search.." />
+        <div>
+          <Modal handleReload={handleReload} />
         </div>
       </div>
+
       <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%] ">
         <div className="">
           {filteredCategories?.map((category: Categories) => {
