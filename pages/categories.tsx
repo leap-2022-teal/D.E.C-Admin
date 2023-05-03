@@ -1,9 +1,7 @@
-import MainLayout from "@/components/MainLayout";
 import React, { useEffect, useState } from "react";
-import Modal from "@/components/categoryModal";
+import Modal from "@/components/categoryAddModal";
 import { SingleCategory } from "../components/SingleCategory";
 import { useRouter } from "next/navigation";
-import SubCategoryAdd from "@/components/SubCategoryAdd";
 import { useCategories } from "@/components/useCategories";
 import { useDebounce } from "use-debounce";
 
@@ -25,10 +23,6 @@ export default function Categories() {
       return category;
     }
   });
-
-  // useEffect(() => {
-  //   axios.get(`http://localhost:8000/categories`).then((res) => setCategories(res.data));
-  // }, []);
 
   function handleReload() {
     router.refresh();
@@ -52,16 +46,7 @@ export default function Categories() {
                 return subCategory;
               }
             });
-            return (
-              <SingleCategory
-                handleReload={handleReload}
-                subCategories={subCategories}
-                category={category}
-                key={category._id}
-                searchedQuery={searchedQuery}
-                // onDelete={handleDelete}
-              />
-            );
+            return <SingleCategory handleReload={handleReload} subCategories={subCategories} category={category} key={category._id} searchedQuery={searchedQuery} />;
           })}
         </div>
       </div>

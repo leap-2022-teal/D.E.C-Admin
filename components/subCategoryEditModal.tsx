@@ -1,39 +1,30 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
-import axios from "axios";
-import { Categories } from "@/pages/categories";
 
-interface PropType {
-  category: Categories;
-  subCategories: any[];
-  handleReload: () => void;
-}
-
-export default function CategoryEditModal({ category, subCategories, handleReload }: PropType) {
+export default function SubCategoryEditModal({ category }: any) {
   const [showModal, setShowModal] = useState(false);
-  const [name, setName] = useState<any>();
-  const [subName, setSubName] = useState<any[]>();
+  const [subName, setSubName] = useState<any>();
 
   useEffect(() => {
-    setName(category.name);
-    setSubName(subCategories);
+    setSubName(category.name);
   }, []);
-  console.log(name);
-  function handleUpdate() {
+  console.log(subName);
+
+  function handleEditSubCategory() {
     axios
       .put(`${process.env.NEXT_PUBLIC_API_URL}/categories/${category._id}`, {
-        name: name,
+        name: subName,
       })
       .then((res) => {
         const { status } = res;
         if (status === 200) {
-          setName("");
+          setSubName("");
           setShowModal(false);
-          handleReload();
+          window.location.reload();
         }
       });
   }
-
   return (
     <>
       <button onClick={() => setShowModal(true)} className=" hover:bg-gray-200 rounded-[5px] w-9 h-9 ">
@@ -65,8 +56,8 @@ export default function CategoryEditModal({ category, subCategories, handleReloa
                       placeholder=""
                       type="text"
                       id=""
-                      onChange={(e) => setName(e.target.value)}
-                      value={name}
+                      onChange={(e) => setSubName(e.target.value)}
+                      value={subName}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
@@ -84,7 +75,7 @@ export default function CategoryEditModal({ category, subCategories, handleReloa
                   <button
                     className="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded block  focus:ring-4 focus:outline-none focus:ring-blue-300  text-sm  text-center "
                     type="button"
-                    onClick={handleUpdate}
+                    onClick={handleEditSubCategory}
                   >
                     хадгалах
                   </button>
