@@ -36,7 +36,7 @@ export default function BannerAddModal({ reload }: PropType) {
         name: name,
         details: details,
         link: link,
-        // image: image,
+        image: image,
       })
       .then((res) => {
         const { status } = res;

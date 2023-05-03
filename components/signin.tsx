@@ -1,33 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
-
 import { Card, Button, Text, Input, Row, Checkbox, Container } from "@nextui-org/react";
 import axios from "axios";
+import { getProviders, getSession, signIn } from "next-auth/react";
 
-export default function Signin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const router = useRouter();
+export default function SignIn({ providers }: any) {
+  const email = useRef("");
+  const password = useRef("");
 
-  function handleLogin() {
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/users`, { email, password })
-      .then((res) => {
-        const { data, status } = res;
-        console.log(data);
-        if (status === 200) {
-          const { token } = data;
-          localStorage.setItem("loginToken", token);
-          // window.location.reload();
-          router.push("/");
-        }
-      })
-      .catch((error) => {
-        if (error.message) {
-          alert("Нэвтрэх нэр эсвэл нууц үг буруу байна ");
-        }
-      });
-  }
   return (
     <div>
       <Container display="flex" alignItems="center" justify="center" css={{ minHeight: "100vh" }}>
@@ -42,8 +22,8 @@ export default function Signin() {
           >
             Login
           </Text>
-          <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Email" onChange={(e) => setEmail(e.target.value)} className="mb-6" />
-          <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Password" onChange={(e) => setPassword(e.target.value)} css={{ mb: "6px" }} className="mb-6" />
+          <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Email" onChange={(e) => (email.current = e.target.value)} className="mb-6" />
+          <Input clearable bordered fullWidth color="primary" size="lg" placeholder="Password" onChange={(e) => (password.current = e.target.value)} css={{ mb: "6px" }} className="mb-6" />
           <Row className="mb-6" justify="space-between">
             <Checkbox>
               <Text size={14}>Remember me</Text>
@@ -51,9 +31,34 @@ export default function Signin() {
             <Text size={14}>Forgot password?</Text>
           </Row>
 
-          <Button onClick={handleLogin}>Sign in</Button>
+          <Button
+            onPress={() =>
+              signIn("credentials", {
+                email: email.current,
+                password: password.current,
+              })
+            }
+          >
+            Sign in
+          </Button>
         </Card>
       </Container>
     </div>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders();
+  if (session) {
+    return {
+      redirect: { destination: "/" },
+    };
+  }
+  return {
+    props: {
+      providers,
+    },
+  };
 }
