@@ -1,9 +1,7 @@
 import CategoryEditModal from "@/components/categoryEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-
 import { Categories } from "@/pages/categories";
-import SingleSubCategories from "./singleSubCategories";
 import Highlighter from "react-highlight-words";
 import Link from "next/link";
 
@@ -29,7 +27,7 @@ export function SingleCategory({ category, subCategories, handleReload, searched
   if (!category) return null;
   return (
     <>
-      <div key={category._id} className=" hover:bg-gray-100 flex justify-between p-10 my-2 w-[100%] ">
+      <div key={category._id} className=" hover:bg-gray-100 flex justify-between p-4 my-2 w-[100%] ">
         <Link href={`/categories/${category._id}`}>
           <div className=" text-gray-700 flex items-center font-bold ">
             <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={category.name} />

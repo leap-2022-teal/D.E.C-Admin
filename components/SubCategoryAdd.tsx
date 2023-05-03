@@ -3,10 +3,6 @@ import ShareIcon from "@mui/icons-material/Share";
 import CategorySelector from "./CategorySelector";
 import axios from "axios";
 
-// interface PropType {
-//   handleReload: () => void;
-// }
-
 export default function SubCategoryAdd() {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -19,7 +15,6 @@ export default function SubCategoryAdd() {
         if (status === 200) {
           setShowModal(false);
           setName("");
-          // handleReload();
           window.location.reload();
         }
       });
