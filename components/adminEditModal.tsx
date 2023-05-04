@@ -8,22 +8,22 @@ interface PropType {
 }
 export default function AdminEditModal({ admin, reload }: PropType) {
   const [showModal, setShowModal] = useState(false);
-  const [userName, setUserName] = useState<any>("");
+  const [name, setName] = useState<any>("");
   const [email, setEmail] = useState<any>("");
   const [password, setPassword] = useState<any>("");
   const [role, setRole] = useState<any>("");
 
   useEffect(() => {
-    setUserName(admin.userName);
+    setName(admin.name);
     setEmail(admin.email);
     setPassword(admin.password);
     setRole(admin.role);
   }, []);
-  console.log(userName, email, password, role);
+
   function handleUpdate() {
     axios
       .put(`${process.env.NEXT_PUBLIC_API_URL}/users/${admin._id}`, {
-        userName: userName,
+        name: name,
         email: email,
         password: password,
         role: role,
@@ -35,7 +35,7 @@ export default function AdminEditModal({ admin, reload }: PropType) {
           setShowModal(false);
           setPassword("");
           setRole("");
-          setUserName("");
+          setName("");
           reload();
         }
       });
@@ -72,15 +72,15 @@ export default function AdminEditModal({ admin, reload }: PropType) {
                       placeholder=""
                       type="text"
                       id=""
-                      onChange={(e) => setUserName(e.target.value)}
-                      value={userName}
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                   </div>
                   <select value={role} onChange={(e) => setRole(e.target.value)} className="mt-4 mb-4 border-2 rounded-[5px] border-gray-300" id="">
                     <option></option>
                     <option>Admin</option>
-                    <option>Moderator</option>
+                    <option>User</option>
                   </select>
                   <span className=" font-bold ">E-mail</span>
                   <div className="mb-6 mt-4">

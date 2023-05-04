@@ -1,4 +1,4 @@
-import SignIn from "@/components/signIn";
+import SignIn from "@/components/signin";
 import { sign } from "crypto";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";

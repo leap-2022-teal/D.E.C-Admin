@@ -30,7 +30,7 @@ export default function SingleAdmins({ admin, reload }: PropType) {
           <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
         </div>
         <div className="text-sm">
-          <div className="font-medium text-gray-700">{admin.userName}</div>
+          <div className="font-medium text-gray-700">{admin.name}</div>
           <div className="text-gray-400">{admin.email}</div>
         </div>
       </th>
