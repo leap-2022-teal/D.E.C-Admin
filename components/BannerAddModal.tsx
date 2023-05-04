@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import axios from "axios";
+import CategorySelector from "./CategorySelector";
 interface PropType {
   reload: () => void;
 }
@@ -10,6 +11,8 @@ export default function BannerAddModal({ reload }: PropType) {
   const [details, setDetails] = useState<any>("");
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
+  const [categoryId, setCategoryId] = useState();
+
   const [link, setLink] = useState<any>("");
 
   async function handleFileUpload(event: any) {
@@ -37,6 +40,7 @@ export default function BannerAddModal({ reload }: PropType) {
         details: details,
         link: link,
         image: image,
+        categoryId: categoryId,
       })
       .then((res) => {
         const { status } = res;
@@ -77,6 +81,9 @@ export default function BannerAddModal({ reload }: PropType) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <CategorySelector value={""} handleSelected={setCategoryId} />
+
                     <label className=" font-bold" htmlFor="">
                       banner name{" "}
                     </label>

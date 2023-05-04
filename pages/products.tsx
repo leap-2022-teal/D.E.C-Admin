@@ -20,6 +20,7 @@ export interface Product {
   categoryId: string;
   subCategoryId: string;
   sizes: Stock[];
+  brand: string;
   image: {
     path: string;
     width: number;

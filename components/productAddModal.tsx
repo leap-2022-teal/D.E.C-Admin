@@ -24,6 +24,7 @@ export default function ProductAddModal({ reload }: PropType) {
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
   const [subCategoryId, setSubCategoryId] = useState();
+  const [brand, setBrand] = useState<string>();
   const createNewProduct = useCreateProduct();
 
   // const { refresh }: any = RefreshRouter();
@@ -60,6 +61,7 @@ export default function ProductAddModal({ reload }: PropType) {
       sizes,
       image,
       subCategoryId,
+      brand,
     });
     reload();
   }
@@ -122,6 +124,17 @@ export default function ProductAddModal({ reload }: PropType) {
                       id="default-input"
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
+                      className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                    <label htmlFor="default-input" className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                      Brand
+                    </label>
+                    <input
+                      placeholder=""
+                      type="text"
+                      id="default-input"
+                      value={brand}
+                      onChange={(e) => setBrand(e.target.value)}
                       className="   bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
                     <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">

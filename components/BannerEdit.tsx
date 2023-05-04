@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
+import CategorySelector from "./CategorySelector";
 interface PropType {
   reload: () => void;
   banner: Banner;
@@ -15,6 +16,7 @@ interface Banner {
   };
   details: string;
   link: string;
+  categoryId: string;
 }
 
 export default function BannerEdit({ banner, reload }: PropType) {
@@ -22,11 +24,14 @@ export default function BannerEdit({ banner, reload }: PropType) {
   const [name, setName] = useState<any>("");
   const [details, setDetails] = useState<any>("");
   const [link, setLink] = useState<any>("");
+  const [categoryId, setCategoryId] = useState<string>();
+
   useEffect(() => {
     if (banner) {
       setName(banner.name);
       setDetails(banner.details);
       setLink(banner.link);
+      setCategoryId(banner.categoryId);
     }
   }, [banner]);
   function editBanner() {
@@ -35,6 +40,7 @@ export default function BannerEdit({ banner, reload }: PropType) {
         name: name,
         details: details,
         link: link,
+        categoryId: categoryId,
       })
       .then((res) => {
         const { status } = res;
@@ -71,6 +77,9 @@ export default function BannerEdit({ banner, reload }: PropType) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <div className="mb-6">
+                    <label className=" mt-4 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <CategorySelector value={""} handleSelected={setCategoryId} />
+
                     <label className=" font-bold" htmlFor="">
                       banner name{" "}
                     </label>
