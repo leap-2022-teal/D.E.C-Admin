@@ -1,5 +1,5 @@
 import MainLayout from "@/components/MainLayout";
-import Signin from "@/components/signIn";
+import Signin from "@/components/signin";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";

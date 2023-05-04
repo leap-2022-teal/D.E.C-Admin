@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Card, Button, Text, Input, Row, Checkbox, Container } from "@nextui-org/react";
-import axios from "axios";
 import { getProviders, getSession, signIn } from "next-auth/react";
 
 export default function SignIn({ providers }: any) {
