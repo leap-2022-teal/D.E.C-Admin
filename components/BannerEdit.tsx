@@ -17,6 +17,7 @@ interface Banner {
   details: string;
   link: string;
   categoryId: string;
+  position: string;
 }
 
 export default function BannerEdit({ banner, reload }: PropType) {
@@ -25,6 +26,7 @@ export default function BannerEdit({ banner, reload }: PropType) {
   const [details, setDetails] = useState<any>("");
   const [link, setLink] = useState<any>("");
   const [categoryId, setCategoryId] = useState<string>();
+  const [position, setPosition] = useState("");
 
   useEffect(() => {
     if (banner) {
@@ -32,6 +34,7 @@ export default function BannerEdit({ banner, reload }: PropType) {
       setDetails(banner.details);
       setLink(banner.link);
       setCategoryId(banner.categoryId);
+      setPosition(banner.position);
     }
   }, [banner]);
   function editBanner() {
@@ -41,6 +44,7 @@ export default function BannerEdit({ banner, reload }: PropType) {
         details: details,
         link: link,
         categoryId: categoryId,
+        position: position,
       })
       .then((res) => {
         const { status } = res;
@@ -100,6 +104,17 @@ export default function BannerEdit({ banner, reload }: PropType) {
                       id="default-input"
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
+                      className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                    <label className=" font-bold" htmlFor="">
+                      Position
+                    </label>
+                    <input
+                      placeholder="details"
+                      type="text"
+                      id="default-input"
+                      value={position}
+                      onChange={(e) => setPosition(e.target.value)}
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 
