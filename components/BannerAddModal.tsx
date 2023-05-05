@@ -12,7 +12,7 @@ export default function BannerAddModal({ reload }: PropType) {
   const [uploading, setUploading] = useState(false);
   const [image, setImage] = useState();
   const [categoryId, setCategoryId] = useState();
-
+  const [position, setPosition] = useState("");
   const [link, setLink] = useState<any>("");
 
   async function handleFileUpload(event: any) {
@@ -41,6 +41,7 @@ export default function BannerAddModal({ reload }: PropType) {
         link: link,
         image: image,
         categoryId: categoryId,
+        position: position,
       })
       .then((res) => {
         const { status } = res;
@@ -104,6 +105,17 @@ export default function BannerAddModal({ reload }: PropType) {
                       id="default-input"
                       value={details}
                       onChange={(e) => setDetails(e.target.value)}
+                      className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    />
+                    <label className=" font-bold" htmlFor="">
+                      Position
+                    </label>
+                    <input
+                      placeholder="details"
+                      type="text"
+                      id="default-input"
+                      value={position}
+                      onChange={(e) => setPosition(e.target.value)}
                       className=" mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     />
 

@@ -13,14 +13,25 @@ interface Banner {
   };
   details: string;
   link: string;
+  categoryId: string;
+  position: string;
+}
+export interface Categories {
+  name: string;
+  _id: string;
+  parentId?: string;
 }
 export default function Banner() {
   const [banner, setBanner] = useState([]);
   const router = useRouter();
-
+  const [categories, setCategories] = useState<Categories[]>([]);
   useEffect(() => {
     axios.get(`http://localhost:8000/banner`).then((res) => setBanner(res.data));
   }, []);
+  useEffect(() => {
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`).then((res) => setCategories(res.data));
+  }, []);
+
   function handleReload() {
     router.refresh();
   }
@@ -52,13 +63,19 @@ export default function Banner() {
               <th className="text-left font-medium text-gray-900" scope="col">
                 Link
               </th>
+              <th className="text-left font-medium text-gray-900" scope="col">
+                Category
+              </th>
+              <th className="text-left font-medium text-gray-900" scope="col">
+                Position
+              </th>
 
               <th className="text-left font-medium text-gray-900" scope="col"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {banner.map((banner: Banner) => (
-              <SingleBanner key={banner._id} banner={banner} reload={handleReload} />
+              <SingleBanner key={banner._id} banner={banner} reload={handleReload} categories={categories} />
             ))}
           </tbody>
         </table>
