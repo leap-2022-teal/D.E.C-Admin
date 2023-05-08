@@ -37,7 +37,7 @@ export function SingleProduct({ product, reload, searchedQuery, categories }: Pr
     <>
       <tr className="hover:bg-gray-50">
         <td>
-          <img src={product.image.path} alt="" className=" w-32 py-3 rounded-[5px] object-cover object-center" />
+          <img src={product.image[0].path} alt="" className=" w-32 py-3 rounded-[5px] object-cover object-center" />
         </td>
         <td className=" text-left font-bold">
           {" "}
