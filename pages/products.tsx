@@ -21,11 +21,13 @@ export interface Product {
   subCategoryId: string;
   sizes: Stock[];
   brand: string;
-  image: {
-    path: string;
-    width: number;
-    height: number;
-  };
+  image: [
+    {
+      path: string;
+      width: number;
+      height: number;
+    }
+  ];
   _id: string;
 }
 interface Category {

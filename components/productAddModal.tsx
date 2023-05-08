@@ -22,7 +22,7 @@ export default function ProductAddModal({ reload }: PropType) {
   const [sizes, setSizes] = useState<Sizes[]>([{ size: 0, stock: 0 }]);
   const [categoryId, setCategoryId] = useState();
   const [uploading, setUploading] = useState(false);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<any[]>([]);
   const [subCategoryId, setSubCategoryId] = useState();
   const [brand, setBrand] = useState<string>();
   const createNewProduct = useCreateProduct();
@@ -42,7 +42,7 @@ export default function ProductAddModal({ reload }: PropType) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setImage(data);
+        setImage([...image, data]);
         setUploading(false);
       });
   }
@@ -206,7 +206,7 @@ export default function ProductAddModal({ reload }: PropType) {
                         </div>
                       )}
 
-                      {image && <img src={image} width="100" alt="" />}
+                      {image && image.map((e: any) => <img src={e?.image} width="100" alt="" />)}
                     </div>
                   </div>
                 </div>
