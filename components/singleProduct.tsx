@@ -36,9 +36,7 @@ export function SingleProduct({ product, reload, searchedQuery, categories }: Pr
   return (
     <>
       <tr className="hover:bg-gray-50">
-        <td>
-          <img src={product.image[0].path} alt="" className=" w-32 py-3 rounded-[5px] object-cover object-center" />
-        </td>
+        <td>{product && product.image && product.image[0] && <img src={product.image[0].path} alt="" className=" w-32 py-3 rounded-[5px] object-cover object-center" />}</td>
         <td className=" text-left font-bold">
           {" "}
           <Highlighter highlightClassName="p-0 bg-red" searchWords={[searchedQuery]} autoEscape={true} textToHighlight={product.name} />
