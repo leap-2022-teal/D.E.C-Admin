@@ -28,6 +28,7 @@ export default function ProductAddModal({ reload }: PropType) {
   const createNewProduct = useCreateProduct();
 
   // const { refresh }: any = RefreshRouter();
+  console.log(image);
 
   async function handleFileUpload(event: any) {
     setUploading(true);
@@ -65,7 +66,6 @@ export default function ProductAddModal({ reload }: PropType) {
     });
     reload();
   }
-  console.log(color);
 
   return (
     <>
@@ -206,7 +206,7 @@ export default function ProductAddModal({ reload }: PropType) {
                         </div>
                       )}
 
-                      {image && image.map((e: any) => <img src={e?.image} width="100" alt="" />)}
+                      {image && image.map((e: any) => <img src={e?.path} width="100" alt="" />)}
                     </div>
                   </div>
                 </div>
