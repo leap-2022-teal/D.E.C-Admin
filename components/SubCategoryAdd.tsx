@@ -10,7 +10,7 @@ export default function SubCategoryAdd() {
 
   function createSubCategory() {
     if (parentId) {
-      axios.post(`http://localhost:8000/categories`, { name, parentId }).then((res) => {
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name, parentId }).then((res) => {
         const { status } = res;
         if (status === 200) {
           setShowModal(false);

@@ -50,7 +50,7 @@ export default function CategoriesDetails() {
 
       <div className="overflow-hidden bg-gray-50 rounded-lg border border-gray-50 shadow-md m-5 w-[95%]">
         {categories.map((category) => (
-          <div className=" p-4 my-2 w-[100%] hover:bg-gray-100  text-gray-700 flex items-center font-bold justify-between">
+          <div className=" p-4 my-2 w-[100%] hover:bg-gray-100  text-gray-700 flex items-center font-bold justify-between" key={category._id}>
             {category.name}
             <div>
               <SubCategoryEditModal category={category} />

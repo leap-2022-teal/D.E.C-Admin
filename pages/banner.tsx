@@ -26,7 +26,7 @@ export default function Banner() {
   const router = useRouter();
   const [categories, setCategories] = useState<Categories[]>([]);
   useEffect(() => {
-    axios.get(`http://localhost:8000/banner`).then((res) => setBanner(res.data));
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/banner`).then((res) => setBanner(res.data));
   }, []);
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories?q=`).then((res) => setCategories(res.data));
