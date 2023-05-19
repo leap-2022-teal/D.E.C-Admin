@@ -206,7 +206,7 @@ export default function ProductAddModal({ reload }: PropType) {
                         </div>
                       )}
 
-                      {image && image.map((e: any) => <img src={e?.path} width="100" alt="" />)}
+                      {image && image.map((e: any) => <img src={e?.path} key={e} width="100" alt="" />)}
                     </div>
                   </div>
                 </div>

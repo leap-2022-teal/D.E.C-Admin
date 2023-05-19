@@ -11,7 +11,7 @@ export default function Admins() {
   const router = useRouter();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/users`).then((res) => setAdmins(res.data));
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`).then((res) => setAdmins(res.data));
   }, []);
   function handleReload() {
     router.refresh();
@@ -46,7 +46,7 @@ export default function Admins() {
           </thead>
           <tbody className="divide-y divide-gray-100 border-t border-gray-100">
             {admins?.map((admin: any) => (
-              <SingleAdmins admin={admin} reload={handleReload} />
+              <SingleAdmins admin={admin} reload={handleReload} key={admin} />
             ))}
           </tbody>
         </table>

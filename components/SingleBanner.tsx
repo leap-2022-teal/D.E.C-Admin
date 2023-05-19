@@ -52,7 +52,7 @@ export function SingleBanner({ banner, reload, categories }: PropType) {
         <td className="text-left">
           {categories.map((category: any) => {
             if (category._id === banner.categoryId) {
-              return <div>{category.name}</div>;
+              return <div key={category._id}>{category.name}</div>;
             }
           })}
         </td>

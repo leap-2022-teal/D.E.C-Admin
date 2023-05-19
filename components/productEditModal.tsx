@@ -163,7 +163,7 @@ export default function ProductEditModal({ product, reload }: PropType) {
 
                   {sizes.map((sizes: Sizes, index: number) => {
                     return (
-                      <div className="grid grid-cols-3 gap-3 mb-4">
+                      <div className="grid grid-cols-3 gap-3 mb-4" key={sizes.size}>
                         <div>
                           <label htmlFor="default-input" className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Size

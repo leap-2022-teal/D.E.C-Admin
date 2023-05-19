@@ -45,19 +45,19 @@ export function SingleProduct({ product, reload, searchedQuery, categories }: Pr
           {" "}
           {categories.map((category: any) => {
             if (category._id === product.categoryId) {
-              return <div>{category.name}</div>;
+              return <div key={category._id}>{category.name}</div>;
             }
           })}
         </td>
         <td className="text-left">${product.price}</td>
         <td className="text-left">
           {product.sizes.map((size: Size) => {
-            return <div>{size.size}</div>;
+            return <div key={size.size}>{size.size}</div>;
           })}
         </td>
         <td className="text-left ">
           {product.sizes.map((size: Size) => {
-            return <div>{size.stock}</div>;
+            return <div key={size.size}>{size.stock}</div>;
           })}
         </td>
 
