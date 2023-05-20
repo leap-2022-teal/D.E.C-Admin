@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
-import CategorySelector from "./CategorySelector";
+import CategorySelector from "./categorySelector";
 import axios from "axios";
 
 export default function SubCategoryAdd() {

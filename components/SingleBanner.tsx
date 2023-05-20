@@ -1,8 +1,6 @@
-import Highlighter from "react-highlight-words";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import BannerEdit from "./BannerEdit";
-import { useEffect, useState } from "react";
 interface Banner {
   _id: string;
   name: string;

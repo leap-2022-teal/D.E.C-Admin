@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import axios from "axios";
-import CategorySelector from "./CategorySelector";
+import CategorySelector from "./categorySelector";
 interface PropType {
   reload: () => void;
   banner: Banner;

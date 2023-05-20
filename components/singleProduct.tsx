@@ -3,7 +3,6 @@ import ProductEditModal from "./ProductEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Product } from "@/pages/products";
 import Highlighter from "react-highlight-words";
-import { Categories } from "@/pages/categories";
 interface Size {
   size: number;
   stock: number;
