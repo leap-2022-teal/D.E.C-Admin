@@ -1,7 +1,6 @@
-import MainLayout from "@/components/MainLayout";
 // import AdminAddModal from "@/components/AdminAddModal";
-import SingleAdmins from "@/components/SingleAdmins";
-import Search from "@/components/Search";
+import SingleAdmins from "@/components/singleAdmins";
+import Search from "@/components/search";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";

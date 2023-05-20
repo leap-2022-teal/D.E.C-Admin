@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import AdminEditModal from "./AdminEditModal";
+import AdminEditModal from "./adminEditModal";
 interface PropType {
   admin: any;
   reload: () => void;

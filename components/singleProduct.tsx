@@ -1,5 +1,5 @@
 import axios from "axios";
-import ProductEditModal from "./ProductEditModal";
+import ProductEditModal from "./productEditModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Product } from "@/pages/products";
 import Highlighter from "react-highlight-words";

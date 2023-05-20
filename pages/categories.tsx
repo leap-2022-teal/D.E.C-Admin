@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "@/components/categoryAddModal";
-import { SingleCategory } from "../components/SingleCategory";
+import { SingleCategory } from "../components/singleCategory";
 import { useRouter } from "next/navigation";
 import { useCategories } from "@/components/useCategories";
 import { useDebounce } from "use-debounce";
