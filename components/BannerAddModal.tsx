@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import axios from "axios";
-import CategorySelector from "./CategorySelector";
+import CategorySelector from "./categorySelector";
 interface PropType {
   reload: () => void;
 }
