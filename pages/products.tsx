@@ -1,11 +1,10 @@
-import MainLayout from "@/components/MainLayout";
 import ProductAddModal from "@/components/ProductAddModal";
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { SingleProduct } from "@/components/SingleProduct";
 import { useRouter } from "next/navigation";
 import { useProducts } from "@/components/useProducts";
-import CategorySelector from "@/components/CategorySelector";
+import CategorySelector from "@/components/categorySelector";
 import axios from "axios";
 
 export interface Stock {

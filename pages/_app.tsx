@@ -1,8 +1,6 @@
 import MainLayout from "@/components/MainLayout";
-import Signin from "@/components/signin";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { SessionProvider } from "next-auth/react";
 
