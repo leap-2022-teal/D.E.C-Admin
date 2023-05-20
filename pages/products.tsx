@@ -1,7 +1,7 @@
-import ProductAddModal from "@/components/ProductAddModal";
+import ProductAddModal from "@/components/productAddModal";
 import React, { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
-import { SingleProduct } from "@/components/SingleProduct";
+import { SingleProduct } from "@/components/singleProduct";
 import { useRouter } from "next/navigation";
 import { useProducts } from "@/components/useProducts";
 import CategorySelector from "@/components/categorySelector";
