@@ -2,9 +2,9 @@ import SignIn from "@/components/signin";
 import { sign } from "crypto";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
 
 export const authOptions = {
-  secret: process.env.NextAuth_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -22,7 +22,7 @@ export const authOptions = {
       },
       async authorize(credentials, req) {
         const { email, password }: any = credentials;
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -33,9 +33,9 @@ export const authOptions = {
           }),
         });
         const user = await res.json();
-        // console.log(user);
+        console.log(user);
         if (res.ok && user) {
-          //   console.log(user);
+          console.log(user);
           return user.one;
         } else {
           return null;
@@ -43,16 +43,13 @@ export const authOptions = {
       },
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET,
   callbacks: {
     async jwt({ token, user }: any) {
-      console.log("Token", token);
-      console.log("user", user);
       return { ...token, ...user };
     },
+
     async session({ session, token, user }: any) {
-      console.log("session", session);
-      console.log("token1", token);
-      console.log("user1", user);
       session.user = token;
       console.log(session);
       return session;
@@ -66,7 +63,7 @@ export const authOptions = {
     },
   },
   pages: {
-    signIn: "/login",
+    signIn: "/",
   },
 };
 

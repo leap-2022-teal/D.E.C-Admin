@@ -6,7 +6,6 @@ import { getProviders, getSession, signIn } from "next-auth/react";
 export default function SignIn({ providers }: any) {
   const email = useRef("");
   const password = useRef("");
-
   return (
     <div>
       <Container display="flex" alignItems="center" justify="center" css={{ minHeight: "100vh" }}>
